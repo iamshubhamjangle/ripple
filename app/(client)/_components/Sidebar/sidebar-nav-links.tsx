@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ModeToggle } from "@/app/(client)/_components/ui/mode-toggle";
 
 const SidebarNavLinks = () => {
   return (
@@ -14,6 +15,9 @@ const SidebarNavLinks = () => {
       </li>
       <li>
         <Link href="/settings">Settings</Link>
+      </li>
+      <li>
+        <ModeToggle />
       </li>
     </ul>
   );

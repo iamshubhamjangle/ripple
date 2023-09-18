@@ -1,6 +1,6 @@
-import Logo from "@/app/(client)/_components/Sidebar/logo";
 import UserNav from "@/app/(client)/_components/Sidebar/user-nav";
 import SidebarNavLinks from "@/app/(client)/_components/Sidebar/sidebar-nav-links";
+import Logo from "./logo-bar";
 
 const Sidebar = () => {
   return (

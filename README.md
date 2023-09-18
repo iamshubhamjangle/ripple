@@ -161,3 +161,11 @@ To know how to use server actions, check out this todo list project:
 - `createTodoSamePage()` Function Definition here https://github.com/iamshubhamjangle/todo-list-next-app/blob/master/app/(server)/(actions)/todo.ts
 - `createTodoSamePage()` Function Consumed here https://github.com/iamshubhamjangle/todo-list-next-app/blob/da9470c2e34badaa602f1e0092159964470df642/app/(client)/_components/createTodoForm.tsx
 - Learn more here https://nextjs.org/docs/app/api-reference/functions/server-actions
+
+## Credits:
+
+<ul>
+<li>
+<a href="https://iconscout.com/icons/twitter" target="_blank">Free Twitter Logo Icon</a> by <a href="https://iconscout.com/contributors/icon-mafia" target="_blank">Icon Mafia</a>
+</li>
+</ul>
