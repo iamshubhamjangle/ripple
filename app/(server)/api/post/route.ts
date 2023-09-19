@@ -1,37 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
 import { revalidatePath } from "next/cache";
 
 import prisma from "@/app/_lib/db";
+import { getUserFromServerSession } from "@/app/_lib/serverAuth";
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    // const body = await request.json();
-    // const token = await getToken({ req: request });
+    const user = await getUserFromServerSession();
+    if (!user) return new NextResponse("Unauthorized", { status: 401 });
 
-    // if (!token) {
-    //   return new NextResponse("Unauthorized", { status: 401 });
-    // }
+    const body = await req.json();
+    const { postBody } = body;
 
-    // const { body: postBody } = body;
-    // const { email } = token;
+    if (!postBody) {
+      return new NextResponse("Missing Fields", { status: 400 });
+    }
 
-    // if (!email) {
-    //   return new NextResponse("Missing Fields", { status: 400 });
-    // }
+    await prisma.post.create({
+      data: {
+        body: postBody,
+        userId: user.id,
+      },
+    });
 
-    // if (!postBody) {
-    //     return new NextResponse("Missing Fields", { status: 400 });
-    //   }
-
-    // await prisma.post.create({
-    //     data: {
-    //         body: postBody,
-    //         user:
-    //     }
-    // })
-
-    // revalidatePath("/settings");
+    revalidatePath("/");
     return new NextResponse("Success");
   } catch (error) {
     console.error(error);

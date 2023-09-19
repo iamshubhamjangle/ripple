@@ -8,7 +8,7 @@ export default async function Home() {
       <div className="w-1/3 h-[100vh] px-8">
         <Sidebar />
       </div>
-      <div className="w-3/4 h-[100vh] border-l-2 border-r-2 px-8">
+      <div className="w-3/4 h-[100vh] border-l-2 border-r-2 px-8 overflow-y-auto scrollbar-none">
         <MainContent />
       </div>
       <div className="w-1/3 h-[100vh] px-8">

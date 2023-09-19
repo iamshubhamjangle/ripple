@@ -55,9 +55,9 @@ model Account {
 model UserProfile {
   id                String   @id @default(cuid())
   bio               String?
-  gender            String?  // You can use an enum for gender (Male, Female)
+  gender            String?
   birthDate         DateTime?
-  privateProfile    Boolean?  // You can use an enum for profile visibility (Public, Private)
+  privateProfile    Boolean?
   emailMarketing    Boolean?
 
   userId            String @unique

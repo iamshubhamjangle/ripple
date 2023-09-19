@@ -1,8 +1,11 @@
 "use client";
 
 import * as z from "zod";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 import { Button } from "@/app/(client)/_components/ui/button";
 import {
@@ -15,22 +18,31 @@ import {
 import { Textarea } from "@/app/(client)/_components/ui/textarea";
 
 const postRippleSchema = z.object({
-  body: z
+  postBody: z
     .string()
     .min(1, { message: "Ripple must be at least 1 character" })
-    .max(255, { message: "Ripple can be at max 255 character's" }),
+    .max(512, { message: "Each Ripple can be at max 512 character's" }),
 });
 
 const CreatePost = () => {
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof postRippleSchema>>({
     resolver: zodResolver(postRippleSchema),
     defaultValues: {
-      body: "",
+      postBody: "",
     },
   });
 
   function onSubmit(values: z.infer<typeof postRippleSchema>) {
-    console.log(values);
+    setLoading(true);
+    axios
+      .post("/api/post", values)
+      .then(() => {
+        form.reset();
+        toast.success("Posted successfully!");
+      })
+      .catch((e) => toast.error(e?.response?.data || "Something went wrong!"))
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -39,7 +51,7 @@ const CreatePost = () => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
             control={form.control}
-            name="body"
+            name="postBody"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
@@ -49,11 +61,18 @@ const CreatePost = () => {
                     placeholder="What's rippling in your mind?"
                   />
                 </FormControl>
+                <FormMessage></FormMessage>
               </FormItem>
             )}
           />
           <div style={{ marginTop: "5px" }} className="flex justify-end">
-            <Button type="submit" size="sm" className="bg-primary">
+            <Button
+              type="submit"
+              size="sm"
+              className="bg-primary"
+              loading={loading}
+              disabled={loading}
+            >
               Post
             </Button>
           </div>
