@@ -17,6 +17,9 @@ const SidebarNavLinks = () => {
         <Link href="/settings">Settings</Link>
       </li>
       <li>
+        <Link href="/login">Login</Link>
+      </li>
+      <li>
         <ModeToggle />
       </li>
     </ul>

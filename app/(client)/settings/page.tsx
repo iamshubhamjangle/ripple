@@ -1,21 +1,26 @@
 import React from "react";
-import { getServerSession } from "next-auth";
 
-import { authOptions } from "@/app/_lib/auth";
 import prisma from "@/app/_lib/db";
-import Settings from "./settings";
+import Settings from "@/app/(client)/settings/settings";
+import { getUserFromServerSession } from "@/app/_lib/serverAuth";
 
 const SettingsPage = async () => {
-  const session = await getServerSession(authOptions);
-  if (!session) return null;
+  const user = await getUserFromServerSession();
 
   const data = await prisma.userProfile.findUnique({
     where: {
-      email: session.user?.email || "",
+      id: user?.id,
     },
   });
 
-  return <Settings data={data} session={session} />;
+  const userDataToPassedToClient = {
+    name: user?.name,
+    email: user?.email,
+    emailVerified: user?.emailVerified,
+    image: user?.image,
+  };
+
+  return <Settings data={data} userData={userDataToPassedToClient} />;
 };
 
 export default SettingsPage;

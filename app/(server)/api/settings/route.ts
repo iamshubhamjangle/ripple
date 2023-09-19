@@ -1,35 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
-import prisma from "@/app/_lib/db";
 import { revalidatePath } from "next/cache";
 
-export async function POST(request: NextRequest) {
+import prisma from "@/app/_lib/db";
+import { getUserFromServerSession } from "@/app/_lib/serverAuth";
+
+export async function POST(req: NextRequest) {
   try {
-    const body = await request.json();
-    const token = await getToken({ req: request });
+    const user = await getUserFromServerSession();
+    if (!user) return new NextResponse("Unauthorized", { status: 401 });
 
-    if (!token) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
+    const body = await req.json();
     const { bio, gender, birthDate, privateProfile, emailMarketing } = body;
-    const { email } = token;
-
-    if (!email) {
-      return new NextResponse("Missing Fields", { status: 400 });
-    }
 
     // Check if a UserProfile exists for the user's email
     const existingUserProfile = await prisma.userProfile.findUnique({
       where: {
-        email,
+        userId: user.id,
       },
     });
 
     if (existingUserProfile) {
       await prisma.userProfile.update({
         where: {
-          email,
+          userId: user.id,
         },
         data: {
           bio,
@@ -42,12 +35,12 @@ export async function POST(request: NextRequest) {
     } else {
       await prisma.userProfile.create({
         data: {
-          email,
           bio,
           gender,
           birthDate,
           privateProfile,
           emailMarketing,
+          userId: user.id,
         },
       });
     }

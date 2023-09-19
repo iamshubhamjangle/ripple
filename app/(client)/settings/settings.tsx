@@ -55,7 +55,7 @@ const UserProfileSchema = z.object({
   emailMarketing: z.boolean().optional(),
 });
 
-const Settings = ({ data, session }: any) => {
+const Settings = ({ data, userData }: any) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   // REACT_FORM_STEP_3 Define your form.
@@ -90,7 +90,7 @@ const Settings = ({ data, session }: any) => {
             `middleware.js` for more info.
           </AlertTitle>
           <AlertDescription>
-            Fetched Session: {JSON.stringify(session)}
+            userData: {JSON.stringify(userData)}
           </AlertDescription>
         </Alert>
         <div>
@@ -98,7 +98,7 @@ const Settings = ({ data, session }: any) => {
           <Input
             type="text"
             id="username"
-            value={session?.user?.name || ""}
+            value={userData?.name || ""}
             disabled
           />
         </div>
@@ -107,7 +107,7 @@ const Settings = ({ data, session }: any) => {
           <Input
             type="email"
             id="email"
-            value={session?.user?.email || ""}
+            value={userData?.email || ""}
             disabled
           />
         </div>
