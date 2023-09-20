@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/app/(client)/_components/ui/form";
 import { Textarea } from "@/app/(client)/_components/ui/textarea";
-import UserNavProfilePic from "../Sidebar/user-nav-profile-pic";
+import UserNavProfilePic from "@/app/(client)/_components/LeftSidebar/user-nav-profile-pic";
 
 const postRippleSchema = z.object({
   postBody: z

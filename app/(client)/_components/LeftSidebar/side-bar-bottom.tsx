@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/app/(client)/_components/ui/dropdown-menu";
 import { ModeToggle } from "@/app/(client)/_components/ui/mode-toggle";
-import UserNavProfilePic from "@/app/(client)/_components/Sidebar/user-nav-profile-pic";
+import UserNavProfilePic from "@/app/(client)/_components/LeftSidebar/user-nav-profile-pic";
 
 const UserNav = () => {
   const router = useRouter();
