@@ -2,7 +2,7 @@
 
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { HelpCircle, LogOut, MoreHorizontal } from "lucide-react";
+import { HelpCircle, LogOut, MoreHorizontal, Unlock } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -12,9 +12,18 @@ import {
 } from "@/app/(client)/_components/ui/dropdown-menu";
 import { ModeToggle } from "@/app/(client)/_components/ui/mode-toggle";
 import UserNavProfilePic from "@/app/(client)/_components/LeftSidebar/user-nav-profile-pic";
+import Link from "next/link";
 
-const UserNav = () => {
+interface UserNavProps {
+  session: any;
+}
+
+const UserNav: React.FC<UserNavProps> = ({ session }) => {
   const router = useRouter();
+
+  if (!session) {
+    return null;
+  }
 
   return (
     <DropdownMenu>

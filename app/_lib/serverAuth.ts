@@ -19,3 +19,9 @@ export const getUserFromServerSession = async () => {
   if (!user) return null;
   return user;
 };
+
+export const getServerSessionWithoutUser = async () => {
+  const session = await getServerSession(authOptions);
+  if (!session) return null;
+  return session;
+};

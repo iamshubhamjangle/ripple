@@ -25,7 +25,7 @@ const postRippleSchema = z.object({
     .max(512, { message: "Each Ripple can be at max 512 character's" }),
 });
 
-const CreatePost = () => {
+const CreatePostForm = () => {
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof postRippleSchema>>({
     resolver: zodResolver(postRippleSchema),
@@ -88,4 +88,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default CreatePostForm;

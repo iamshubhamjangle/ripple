@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ModeToggle } from "@/app/(client)/_components/ui/mode-toggle";
 import {
   HomeIcon,
   LucideSettings,
@@ -8,32 +7,41 @@ import {
   UserPlus2,
 } from "lucide-react";
 
-const SidebarNavLinks = () => {
+import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
+
+const SidebarNavLinks = async () => {
+  const session = await getServerSessionWithoutUser();
+
   const links = [
     {
       name: "Home",
       href: "/",
       icon: HomeIcon,
+      secure: false,
     },
     {
       name: "Profile",
       href: "/profile",
       icon: UserCircle2,
+      secure: true,
     },
     {
       name: "Followers",
       href: "/followers",
       icon: UserPlus2,
+      secure: true,
     },
     {
       name: "Settings",
       href: "/settings",
       icon: LucideSettings,
+      secure: true,
     },
     {
-      name: "Login",
+      name: "Login / Register",
       href: "/login",
       icon: Unlock,
+      secure: false,
     },
   ];
 
@@ -41,6 +49,8 @@ const SidebarNavLinks = () => {
     <ul className="space-y-5">
       {links &&
         links.map((link) => {
+          if (!session && link.secure) return null;
+
           const Icon = link.icon;
           return (
             <li key={link.href} className="flex">
