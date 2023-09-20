@@ -26,7 +26,7 @@ const Feed = async () => {
             );
           })}
       </div>
-      <pre>{JSON.stringify(posts, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(posts, null, 2)}</pre> */}
     </div>
   );
 };
