@@ -15,8 +15,7 @@ export function ModeToggle() {
   const { setTheme } = useTheme();
 
   return (
-    <div className="flex justify-around items-center">
-      <span className="text-sm">Theme:</span>
+    <div className="flex justify-around items-center my-2">
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
@@ -24,11 +23,11 @@ export function ModeToggle() {
             size="icon"
             onClick={() => setTheme("light")}
           >
-            <Sun />
+            <Sun className="w-5 h-5" />
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Light</p>
+          <p>Light Theme</p>
         </TooltipContent>
       </Tooltip>
       <Tooltip>
@@ -38,11 +37,11 @@ export function ModeToggle() {
             size="icon"
             onClick={() => setTheme("dark")}
           >
-            <Moon />
+            <Moon className="w-5 h-5" />
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Dark</p>
+          <p>Dark Theme</p>
         </TooltipContent>
       </Tooltip>
       <Tooltip>
@@ -52,11 +51,11 @@ export function ModeToggle() {
             size="icon"
             onClick={() => setTheme("system")}
           >
-            <Settings />
+            <Settings className="w-5 h-5" />
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>System</p>
+          <p>System Default Theme</p>
         </TooltipContent>
       </Tooltip>
     </div>
