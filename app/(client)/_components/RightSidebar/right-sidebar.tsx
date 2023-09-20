@@ -3,7 +3,7 @@ import Trending from "@/app/(client)/_components/RightSidebar/trending";
 
 const RightSidebar = () => {
   return (
-    <div>
+    <div className="flex flex-col">
       <Following />
       <Trending />
     </div>

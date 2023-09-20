@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from "@/app/(client)/_components/ui/form";
 import { Textarea } from "@/app/(client)/_components/ui/textarea";
+import UserNavProfilePic from "../Sidebar/user-nav-profile-pic";
 
 const postRippleSchema = z.object({
   postBody: z
@@ -46,38 +47,43 @@ const CreatePost = () => {
   }
 
   return (
-    <div className="my-4">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <FormField
-            control={form.control}
-            name="postBody"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Textarea
-                    className="resize-none"
-                    {...field}
-                    placeholder="What's rippling in your mind?"
-                  />
-                </FormControl>
-                <FormMessage></FormMessage>
-              </FormItem>
-            )}
-          />
-          <div style={{ marginTop: "5px" }} className="flex justify-end">
-            <Button
-              type="submit"
-              size="sm"
-              className="bg-primary"
-              loading={loading}
-              disabled={loading}
-            >
-              Post
-            </Button>
-          </div>
-        </form>
-      </Form>
+    <div className="my-4 bg-secondary rounded-md flex gap-4">
+      <div className="m-2">
+        <UserNavProfilePic />
+      </div>
+      <div className="flex-grow">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="postBody"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Textarea
+                      className="resize-none bg-secondary border-none p-2"
+                      {...field}
+                      placeholder="What's rippling in your mind?"
+                    />
+                  </FormControl>
+                  <FormMessage></FormMessage>
+                </FormItem>
+              )}
+            />
+            <div style={{ marginTop: "5px" }} className="flex justify-end">
+              <Button
+                type="submit"
+                size="sm"
+                className="bg-primary m-2"
+                loading={loading}
+                disabled={loading}
+              >
+                Post
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const UserNavProfilePic = () => {
   const { data: session } = useSession();
 
   return (
-    <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+    <Button variant="ghost" className="relative h-8 w-8 rounded-full shadow-sm">
       <Avatar className="h-8 w-8">
         <AvatarImage src={session?.user?.image || ""} alt="user avatar" />
         <AvatarFallback>SC</AvatarFallback>
