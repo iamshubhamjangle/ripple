@@ -1,4 +1,15 @@
-Using https://console.neon.tech/app/projects/wandering-sky-87653498
+User Stories
+
+- Delete Post - Delete the post from DB and on screen
+- Like Post - Increament the like counted in DB and on screen
+- Share Post - Generate a share URL and copy it to clipboard
+- Explore Page - Follow people
+- Followers Page
+- Following Page
+- Trending Section - Render Top 5 Liked Posts in last 24hrs
+- Optimistic Delete
+- Optimistic Like
+- Comment Post
 
 ## Getting Started
 

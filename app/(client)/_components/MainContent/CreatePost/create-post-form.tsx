@@ -47,13 +47,16 @@ const CreatePostForm = () => {
   }
 
   return (
-    <div className="my-4 bg-secondary rounded-md flex gap-4">
-      <div className="m-2">
+    <div className="bg-secondary rounded-md flex">
+      <div className="p-3">
         <UserNavProfilePic />
       </div>
       <div className="flex-grow">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-8 p-2"
+          >
             <FormField
               control={form.control}
               name="postBody"
@@ -61,7 +64,7 @@ const CreatePostForm = () => {
                 <FormItem>
                   <FormControl>
                     <Textarea
-                      className="resize-none bg-secondary border-none p-2"
+                      className="resize-none bg-secondary border-none outline-none"
                       {...field}
                       placeholder="What's rippling in your mind?"
                     />
@@ -73,7 +76,7 @@ const CreatePostForm = () => {
             <div style={{ marginTop: "5px" }} className="flex justify-end">
               <Button
                 type="submit"
-                size="sm"
+                size="default"
                 className="bg-primary m-2"
                 loading={loading}
                 disabled={loading}

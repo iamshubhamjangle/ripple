@@ -10,7 +10,7 @@ const Feed = async () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold tracking-tight">Feed</h2>
+      <h2 className="text-xl font-bold tracking-tight py-4">Your Feed</h2>
       <div className="h-full space-y-4 my-4">
         {posts &&
           posts.map((post) => {

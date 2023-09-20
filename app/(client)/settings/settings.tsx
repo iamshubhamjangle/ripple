@@ -45,6 +45,7 @@ import { cn } from "@/app/_lib/utils";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
+import Link from "next/link";
 
 // REACT_FORM_STEP_2 Define form schema
 const UserProfileSchema = z.object({
@@ -83,16 +84,6 @@ const Settings = ({ data, userData }: any) => {
   return (
     <div>
       <div className="grid w-full items-center gap-5 my-4">
-        <Alert className="bg-yellow-50">
-          <BadgeInfo className="h-4 w-4" color="orange" />
-          <AlertTitle>
-            This is Protected Server Component Using Middleware. Check
-            `middleware.js` for more info.
-          </AlertTitle>
-          <AlertDescription>
-            userData: {JSON.stringify(userData)}
-          </AlertDescription>
-        </Alert>
         <div>
           <Label htmlFor="username">Username</Label>
           <Input
@@ -255,6 +246,11 @@ const Settings = ({ data, userData }: any) => {
           </Button>
         </form>
       </Form>
+      <div className="my-4">
+        <Button type="button">
+          <Link href="/">Go back to Home Page</Link>
+        </Button>
+      </div>
     </div>
   );
 };
