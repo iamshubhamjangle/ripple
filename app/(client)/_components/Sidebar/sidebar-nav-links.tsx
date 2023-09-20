@@ -49,9 +49,6 @@ const SidebarNavLinks = () => {
             </li>
           );
         })}
-      <li>
-        <ModeToggle />
-      </li>
     </ul>
   );
 };
