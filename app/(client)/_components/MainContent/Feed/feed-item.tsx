@@ -27,7 +27,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
         <div className="flex items-center overflow-x-hidden">
           <span className="text-lg font-bold mr-2">{name}</span>
           <span className="text-sm text-muted-foreground mr-2">
-            {uniqueName}
+            @{uniqueName}
           </span>
           <span className="text-sm text-muted-foreground mr-2">•</span>
           <span className="text-sm text-muted-foreground mr-2">

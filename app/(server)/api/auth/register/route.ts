@@ -5,9 +5,9 @@ import prisma from "@/app/_lib/db";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, password } = body;
+    const { name, email, identifier, password } = body;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !identifier) {
       return new NextResponse("Missing Fields", { status: 400 });
     }
 
@@ -22,12 +22,14 @@ export async function POST(request: NextRequest) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    const noSpaceIdentifier = identifier.split(" ")[0];
 
     await prisma.user.create({
       data: {
         name,
         email,
         hashedPassword,
+        identifier: noSpaceIdentifier,
       },
     });
 

@@ -48,6 +48,10 @@ const Register = ({ searchParams }: any) => {
           <Input id="name" type="name" name="name" required />
         </div>
         <div>
+          <Label htmlFor="identifier">@id</Label>
+          <Input id="identifier" type="name" name="identifier" required />
+        </div>
+        <div>
           <Label htmlFor="email">Email</Label>
           <Input id="email" type="email" name="email" required />
         </div>
