@@ -30,6 +30,12 @@ export async function POST(request: NextRequest) {
         email,
         hashedPassword,
         identifier: noSpaceIdentifier,
+        userProfile: {
+          create: {
+            privateProfile: true,
+            emailMarketing: false,
+          },
+        },
       },
     });
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { BadgeInfo, CalendarIcon } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 
 import {
   Form,
@@ -19,11 +19,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/app/(client)/_components/ui/select";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/app/(client)/_components/ui/alert";
 import {
   Popover,
   PopoverContent,
@@ -56,18 +51,34 @@ const UserProfileSchema = z.object({
   emailMarketing: z.boolean().optional(),
 });
 
-const Settings = ({ data, userData }: any) => {
+interface SettingsProps {
+  initialData?: {
+    id: string | null;
+    bio: string | null;
+    gender: any;
+    birthDate: Date | null;
+    privateProfile: boolean | null;
+    emailMarketing: boolean | null;
+    userId: string | null;
+    user: {
+      name: string | null;
+      email: string | null;
+    };
+  } | null;
+}
+
+const Settings: React.FC<SettingsProps> = ({ initialData }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   // REACT_FORM_STEP_3 Define your form.
   const form = useForm<z.infer<typeof UserProfileSchema>>({
     resolver: zodResolver(UserProfileSchema),
     defaultValues: {
-      bio: data?.bio || "",
-      gender: data?.gender || "",
-      birthDate: data?.birthDate || undefined,
-      privateProfile: data?.privateProfile || false,
-      emailMarketing: data?.emailMarketing || false,
+      bio: initialData?.bio || "",
+      gender: initialData?.gender || undefined,
+      birthDate: initialData?.birthDate || undefined,
+      privateProfile: initialData?.privateProfile || true,
+      emailMarketing: initialData?.emailMarketing || false,
     },
   });
 
@@ -89,7 +100,7 @@ const Settings = ({ data, userData }: any) => {
           <Input
             type="text"
             id="username"
-            value={userData?.name || ""}
+            value={initialData?.user?.name || "************"}
             disabled
           />
         </div>
@@ -98,7 +109,7 @@ const Settings = ({ data, userData }: any) => {
           <Input
             type="email"
             id="email"
-            value={userData?.email || ""}
+            value={initialData?.user?.email || "************"}
             disabled
           />
         </div>

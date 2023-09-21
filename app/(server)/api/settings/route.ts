@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 
 import prisma from "@/app/_lib/db";
-import { getUserFromServerSession } from "@/app/_lib/serverAuth";
+import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
 
 export async function POST(req: NextRequest) {
   try {
-    const user = await getUserFromServerSession();
-    if (!user) return new NextResponse("Unauthorized", { status: 401 });
+    const session = await getServerSessionWithoutUser();
+    if (!session) return new NextResponse("Unauthorized", { status: 401 });
 
     const body = await req.json();
     const { bio, gender, birthDate, privateProfile, emailMarketing } = body;
@@ -15,14 +15,14 @@ export async function POST(req: NextRequest) {
     // Check if a UserProfile exists for the user's email
     const existingUserProfile = await prisma.userProfile.findUnique({
       where: {
-        userId: user.id,
+        userId: session.user.id,
       },
     });
 
     if (existingUserProfile) {
       await prisma.userProfile.update({
         where: {
-          userId: user.id,
+          userId: session.user.id,
         },
         data: {
           bio,
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
           birthDate,
           privateProfile,
           emailMarketing,
-          userId: user.id,
+          userId: session.user.id,
         },
       });
     }

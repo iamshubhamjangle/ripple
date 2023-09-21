@@ -16,9 +16,10 @@ const Register = ({ searchParams }: any) => {
   const handleRegisterUser = (formInput: FormData) => {
     setLoading(true);
     const name = formInput.get("name");
+    const identifier = formInput.get("identifier");
     const email = formInput.get("email");
     const password = formInput.get("password");
-    const data = { name, email, password };
+    const data = { name, identifier, email, password };
 
     axios
       .post("/api/auth/register", data)
@@ -49,7 +50,7 @@ const Register = ({ searchParams }: any) => {
         </div>
         <div>
           <Label htmlFor="identifier">@id</Label>
-          <Input id="identifier" type="name" name="identifier" required />
+          <Input id="identifier" type="text" name="identifier" required />
         </div>
         <div>
           <Label htmlFor="email">Email</Label>
