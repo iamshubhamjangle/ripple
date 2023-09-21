@@ -1,8 +1,7 @@
 "use client";
 
 import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { HelpCircle, LogOut, MoreHorizontal, Unlock } from "lucide-react";
+import { HelpCircle, LogOut, MoreHorizontal } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -12,15 +11,12 @@ import {
 } from "@/app/(client)/_components/ui/dropdown-menu";
 import { ModeToggle } from "@/app/(client)/_components/ui/mode-toggle";
 import UserNavProfilePic from "@/app/(client)/_components/LeftSidebar/user-nav-profile-pic";
-import Link from "next/link";
 
 interface UserNavProps {
   session: any;
 }
 
 const UserNav: React.FC<UserNavProps> = ({ session }) => {
-  const router = useRouter();
-
   if (!session) {
     return null;
   }
@@ -28,12 +24,14 @@ const UserNav: React.FC<UserNavProps> = ({ session }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="flex items-center justify-between my-8">
+        <div className="flex items-center my-8 w-full">
           <UserNavProfilePic />
-          <div className="flex flex-col">
-            <span className="font-semibold">Shubham Jangle</span>
-            <span className="text-sm text-muted-foreground">
-              @shubhamjangle
+          <div className="flex flex-col w-full overflow-hidden">
+            <span className="font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+              {session.user.name}
+            </span>
+            <span className="text-sm text-muted-foreground whitespace-nowrap overflow-hidden text-ellipsis">
+              @{session.user.identifier}
             </span>
           </div>
           <MoreHorizontal />

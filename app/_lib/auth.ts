@@ -56,12 +56,18 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === "development",
   callbacks: {
-    jwt: async ({ token, account, user }) => {
-      if (user) token.uid = user.id;
+    // Extra properties mentioned here should be present in @/app/_types/next-auth.d.ts
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.identifier = user.identifier;
+      }
       return token;
     },
     session: async ({ session, token }) => {
-      if (session?.user) session.user.id = token.sub;
+      if (session?.user) {
+        session.user.id = token.sub;
+        session.user.identifier = token.identifier;
+      }
       return session;
     },
   },

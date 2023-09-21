@@ -1,5 +1,6 @@
 User Stories
 
+- Fix LeftNav UserProfile Name, Identifier
 - Update Login/Signup screen - ref: shadcn
 - Share Post - Generate a share URL and copy it to clipboard
 - Explore Page - Follow people

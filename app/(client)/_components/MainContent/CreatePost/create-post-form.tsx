@@ -65,6 +65,7 @@ const CreatePostForm = () => {
                   <FormControl>
                     <Textarea
                       className="resize-none bg-secondary border-none outline-none"
+                      rows={5}
                       {...field}
                       placeholder="What's rippling in your mind?"
                     />

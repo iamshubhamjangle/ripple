@@ -4,14 +4,14 @@ import RightSidebar from "@/app/(client)/_components/RightSidebar/right-sidebar"
 
 export default async function Home() {
   return (
-    <main className="flex flex-row">
-      <div className="w-1/5 h-[100vh] px-4">
+    <main className="flex flex-row gap-6">
+      <div className="w-1/5 h-[100vh]">
         <LeftSidebar />
       </div>
-      <div className="w-3/5 h-[100vh] border-l border-r px-8 overflow-y-auto scrollbar-none">
+      <div className="w-3/5 h-[100vh] overflow-y-auto scrollbar-none">
         <MainContent />
       </div>
-      <div className="w-0 h-[100vh] px-4 md:w-1/4">
+      <div className="w-0 h-[100vh] md:w-1/4">
         <RightSidebar />
       </div>
     </main>
