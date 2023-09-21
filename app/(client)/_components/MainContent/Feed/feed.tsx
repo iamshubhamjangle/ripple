@@ -17,6 +17,8 @@ const Feed = async () => {
             return (
               <FeedItem
                 key={post.id}
+                id={post.id}
+                authorId={post.user.id}
                 uniqueName={post.user.identifier}
                 name={post.user.name || ""}
                 body={post.body}
