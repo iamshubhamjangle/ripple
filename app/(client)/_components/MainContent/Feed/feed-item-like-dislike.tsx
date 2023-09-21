@@ -40,7 +40,10 @@ const FeedItemLikeDislike: React.FC<FeedItemDeleteProps> = ({
     likes.findIndex((like) => like.userId === session?.user.id) !== -1;
 
   return (
-    <div className="flex items-center" onClick={() => likePost(postId)}>
+    <div
+      className="flex items-center cursor-pointer"
+      onClick={() => likePost(postId)}
+    >
       {isPostLikedByUser ? (
         <HeartIcon fill="red" color="red" className="mr-1 h-4 w-4" />
       ) : (

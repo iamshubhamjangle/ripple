@@ -37,7 +37,7 @@ const FeedItemDelete: React.FC<FeedItemDeleteProps> = ({
 
   return (
     <Trash2
-      className="mr-1 h-4 w-4"
+      className="mr-1 h-4 w-4 cursor-pointer"
       color="#B22222"
       onClick={() => deletePost(postId)}
     />

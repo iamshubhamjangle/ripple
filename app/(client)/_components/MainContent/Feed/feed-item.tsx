@@ -3,6 +3,8 @@ import { getTimeElapsed } from "@/app/_lib/timeElaped";
 import { HeartIcon, MessageCircleIcon, Share2Icon } from "lucide-react";
 import FeedItemDelete from "./feed-item-delete";
 import FeedItemLikeDislike from "./feed-item-like-dislike";
+import FeedItemComment from "./feed-item-comment";
+import FeedItemShare from "./feed-item-share";
 
 interface FeedItemProps {
   id: string;
@@ -45,21 +47,11 @@ const FeedItem: React.FC<FeedItemProps> = ({
           </span>
         </div>
         <p className="whitespace-pre-wrap">{body}</p>
-        <div className="flex space-x-4 text-sm text-muted-foreground">
-          <div className="flex items-center cursor-pointer">
-            <FeedItemLikeDislike likes={likes} postId={id} />
-          </div>
-          <div className="flex items-center cursor-pointer">
-            <MessageCircleIcon className="mr-1 h-4 w-4" />
-            <span>{comments}</span>
-          </div>
-          <div className="flex items-center cursor-pointer">
-            <Share2Icon className="mr-1 h-4 w-4" />
-            <span>{shares}</span>
-          </div>
-          <div className="flex items-center cursor-pointer">
-            <FeedItemDelete postId={id} authorId={authorId} />
-          </div>
+        <div className="flex items-center space-x-8 text-sm text-muted-foreground">
+          <FeedItemLikeDislike likes={likes} postId={id} />
+          <FeedItemComment postId={id} />
+          <FeedItemShare postId={id} />
+          <FeedItemDelete postId={id} authorId={authorId} />
         </div>
       </CardContent>
     </Card>
