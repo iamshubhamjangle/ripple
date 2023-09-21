@@ -11,7 +11,7 @@ const Feed = async () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold tracking-tight py-4">Your Feed</h2>
+      <h2 className="text-xl font-bold tracking-tight pt-4">Your Feed</h2>
       <div className="h-full space-y-4 my-4">
         {posts &&
           posts.map((post) => {
@@ -20,6 +20,7 @@ const Feed = async () => {
                 key={post.id}
                 id={post.id}
                 authorId={post.user.id}
+                authorProfilePicture={post.user.image}
                 uniqueName={post.user.identifier}
                 name={post.user.name || ""}
                 body={post.body}

@@ -1,6 +1,7 @@
 User Stories
 
-- Fix LeftNav UserProfile Name, Identifier
+- ~~Fix LeftNav UserProfile Name, Identifier~~
+- Add picture to FeedItem
 - Update Login/Signup screen - ref: shadcn
 - Share Post - Generate a share URL and copy it to clipboard
 - Explore Page - Follow people
@@ -180,3 +181,5 @@ To know how to use server actions, check out this todo list project:
 <a href="https://iconscout.com/icons/twitter" target="_blank">Free Twitter Logo Icon</a> by <a href="https://iconscout.com/contributors/icon-mafia" target="_blank">Icon Mafia</a>
 </li>
 </ul>
+
+whitespace-nowrap overflow-hidden text-ellipsis
