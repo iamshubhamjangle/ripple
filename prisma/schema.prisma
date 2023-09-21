@@ -31,6 +31,7 @@ model User {
   userProfile     UserProfile?  // Required only for setting page for tutorial
   posts           Post[]
   comments        Comment[]
+  likes           Like[]
 }
 
 model Account {
@@ -68,7 +69,7 @@ model UserProfile {
 model Post {
   id                String    @id @default(cuid())
   body              String
-  likes             Int       @default(0)
+  likes             Like[]
   shares            Int       @default(0)
   comments          Comment[]
   createdAt         DateTime  @default(now())
@@ -76,6 +77,15 @@ model Post {
 
   userId            String
   user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Like {
+  id                String    @id @default(cuid())
+  userId            String
+  postId            String
+  
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post              Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
 }
 
 model Comment {

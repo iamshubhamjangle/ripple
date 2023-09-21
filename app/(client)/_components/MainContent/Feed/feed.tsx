@@ -4,6 +4,7 @@ import FeedItem from "@/app/(client)/_components/MainContent/Feed/feed-item";
 const Feed = async () => {
   const posts = await prisma.post.findMany({
     include: {
+      likes: true,
       user: { select: { id: true, name: true, image: true, identifier: true } },
     },
   });
@@ -23,7 +24,7 @@ const Feed = async () => {
                 name={post.user.name || ""}
                 body={post.body}
                 timestamp={post.createdAt}
-                comments={post.likes}
+                comments={0}
                 likes={post.likes}
                 shares={post.shares}
               />

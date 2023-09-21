@@ -5,27 +5,45 @@ import prisma from "@/app/_lib/db";
 import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
-export async function DELETE(
+export async function POST(
   req: NextRequest,
-  { params }: { params: { postId: string[] } }
+  { params }: { params: { postId: string } }
 ) {
   try {
     const session = await getServerSessionWithoutUser();
     if (!session) return new NextResponse("Unauthorized", { status: 401 });
 
-    if (!params.postId || !params.postId[0]) {
+    if (!params.postId) {
       return new NextResponse("Missing Fields", { status: 400 });
     }
 
-    await prisma.post.delete({
+    const userId = session.user.id;
+    const postId = params.postId;
+
+    // Check if a like already exists for the given userId and postId
+    const existingLike = await prisma.like.findFirst({
       where: {
-        id: params.postId[0],
-        userId: session.user.id,
+        userId,
+        postId,
       },
     });
 
-    revalidatePath("/");
-    return new NextResponse("Success");
+    if (existingLike) {
+      await prisma.like.delete({
+        where: {
+          id: existingLike.id,
+        },
+      });
+      return new NextResponse("Success: Like Removed");
+    } else {
+      await prisma.like.create({
+        data: {
+          userId,
+          postId,
+        },
+      });
+      return new NextResponse("Success: Like Added");
+    }
   } catch (error) {
     if (error instanceof PrismaClientKnownRequestError) {
       return new NextResponse("Unauthorized", { status: 401 });

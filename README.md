@@ -1,7 +1,7 @@
 User Stories
 
-- Delete Post - Delete the post from DB and on screen
 - Like Post - Increament the like counted in DB and on screen
+- Update Login/Signup screen - ref: shadcn
 - Share Post - Generate a share URL and copy it to clipboard
 - Explore Page - Follow people
 - Followers Page

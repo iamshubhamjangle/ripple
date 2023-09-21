@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/app/(client)/_components/ui/card";
 import { getTimeElapsed } from "@/app/_lib/timeElaped";
 import { HeartIcon, MessageCircleIcon, Share2Icon } from "lucide-react";
 import FeedItemDelete from "./feed-item-delete";
+import FeedItemLikeDislike from "./feed-item-like-dislike";
 
 interface FeedItemProps {
   id: string;
@@ -10,7 +11,11 @@ interface FeedItemProps {
   uniqueName: string;
   timestamp: Date;
   body: string;
-  likes: number;
+  likes: {
+    id: string;
+    userId: string;
+    postId: string;
+  }[];
   comments: number;
   shares: number;
 }
@@ -39,11 +44,10 @@ const FeedItem: React.FC<FeedItemProps> = ({
             {getTimeElapsed(timestamp)}
           </span>
         </div>
-        <div>{body}</div>
+        <p className="whitespace-pre-wrap">{body}</p>
         <div className="flex space-x-4 text-sm text-muted-foreground">
           <div className="flex items-center cursor-pointer">
-            <HeartIcon className="mr-1 h-4 w-4" />
-            <span>{likes}</span>
+            <FeedItemLikeDislike likes={likes} postId={id} />
           </div>
           <div className="flex items-center cursor-pointer">
             <MessageCircleIcon className="mr-1 h-4 w-4" />
