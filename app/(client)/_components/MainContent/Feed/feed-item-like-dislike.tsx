@@ -3,6 +3,7 @@
 import axios from "axios";
 import { HeartIcon, Loader2, Trash2 } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -20,15 +21,14 @@ const FeedItemLikeDislike: React.FC<FeedItemDeleteProps> = ({
   likes,
 }) => {
   const { data: session } = useSession();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const likePost = (postId: string) => {
     setLoading(true);
     axios
       .post(`/api/post/${postId}/action/like`)
-      .then((res) => {
-        toast.success(res.data);
-      })
+      .then(() => router.refresh())
       .catch((e) => toast.error(e?.response?.data || "Something went wrong!"))
       .finally(() => setLoading(false));
   };

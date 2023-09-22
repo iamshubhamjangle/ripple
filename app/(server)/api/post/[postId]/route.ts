@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
 
 import prisma from "@/app/_lib/db";
 import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
@@ -24,8 +23,7 @@ export async function DELETE(
       },
     });
 
-    revalidatePath("/");
-    return new NextResponse("Success");
+    return new NextResponse("Successfully Deleted");
   } catch (error) {
     if (error instanceof PrismaClientKnownRequestError) {
       console.error(error);

@@ -38,8 +38,6 @@ async function generateIdentifier(inputString: string) {
   if (user) {
     const newIdentifier =
       generatedUniqueIdentifier + "_" + generateRandomString(5);
-    console.log("newIdentifier", newIdentifier);
-
     return generateIdentifier(newIdentifier);
   }
   return generatedUniqueIdentifier;

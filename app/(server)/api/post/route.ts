@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
 
 import prisma from "@/app/_lib/db";
 import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
@@ -23,7 +22,6 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    revalidatePath("/");
     return new NextResponse("Success");
   } catch (error) {
     console.error(error);

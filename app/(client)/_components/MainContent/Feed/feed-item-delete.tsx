@@ -3,6 +3,7 @@
 import axios from "axios";
 import { Loader2, Trash2 } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -16,15 +17,14 @@ const FeedItemDelete: React.FC<FeedItemDeleteProps> = ({
   authorId,
 }) => {
   const { data: session } = useSession();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const deletePost = (id: string) => {
     setLoading(true);
     axios
       .delete(`/api/post/${id}`)
-      .then(() => {
-        toast.success("Post deleted successfully!");
-      })
+      .then(() => router.refresh())
       .catch((e) => toast.error(e?.response?.data || "Something went wrong!"))
       .finally(() => setLoading(false));
   };

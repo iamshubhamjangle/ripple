@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
 
 import prisma from "@/app/_lib/db";
 import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
@@ -45,8 +44,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    revalidatePath("/settings");
-    return new NextResponse("Success");
+    return new NextResponse("Successfully Updated");
   } catch (error) {
     console.error(error);
     return new NextResponse("Internal Server Error", { status: 500 });

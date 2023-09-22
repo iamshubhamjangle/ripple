@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
 
 import prisma from "@/app/_lib/db";
 import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
@@ -34,7 +33,7 @@ export async function POST(
           id: existingLike.id,
         },
       });
-      return new NextResponse("Success: Like Removed");
+      return new NextResponse("Successfully Unliked");
     } else {
       await prisma.like.create({
         data: {
@@ -42,7 +41,7 @@ export async function POST(
           postId,
         },
       });
-      return new NextResponse("Success: Like Added");
+      return new NextResponse("Successfully Liked");
     }
   } catch (error) {
     if (error instanceof PrismaClientKnownRequestError) {

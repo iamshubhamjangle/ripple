@@ -41,6 +41,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // REACT_FORM_STEP_2 Define form schema
 const UserProfileSchema = z.object({
@@ -68,6 +69,7 @@ interface SettingsProps {
 }
 
 const Settings: React.FC<SettingsProps> = ({ initialData }) => {
+  const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
 
   // REACT_FORM_STEP_3 Define your form.
@@ -87,7 +89,10 @@ const Settings: React.FC<SettingsProps> = ({ initialData }) => {
     setLoading(true);
     axios
       .post("/api/settings", values)
-      .then(() => toast.success("Saved successfully!"))
+      .then(() => {
+        toast.success("Saved successfully!");
+        router.refresh();
+      })
       .catch((e) => toast.error(e?.response?.data || "Something went wrong!"))
       .finally(() => setLoading(false));
   }

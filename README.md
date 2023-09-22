@@ -4,7 +4,7 @@ User Stories
 - ~~Add picture to FeedItem~~
 - ~~Update Login/Signup screen UI~~
 - ~~Responsive Design - Mobile/Desktop~~
-- Like/Unlike/Delete/Create from client component doesn't reload/refetch data on the page.
+- ~~Like/Unlike/Delete/Create from Client component doesn't refetch data on the page.~~
 - Share Post - Generate a share URL and copy it to clipboard
 - Explore Page - Follow people
 - Followers Page

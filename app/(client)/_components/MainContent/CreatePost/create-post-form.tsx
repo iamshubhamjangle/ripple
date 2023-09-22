@@ -17,6 +17,7 @@ import {
 } from "@/app/(client)/_components/ui/form";
 import { Textarea } from "@/app/(client)/_components/ui/textarea";
 import UserNavProfilePic from "@/app/(client)/_components/LeftSidebar/user-nav-profile-pic";
+import { useRouter } from "next/navigation";
 
 const postRippleSchema = z.object({
   postBody: z
@@ -26,6 +27,7 @@ const postRippleSchema = z.object({
 });
 
 const CreatePostForm = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof postRippleSchema>>({
     resolver: zodResolver(postRippleSchema),
@@ -40,7 +42,8 @@ const CreatePostForm = () => {
       .post("/api/post", values)
       .then(() => {
         form.reset();
-        toast.success("Posted successfully!");
+        router.refresh();
+        toast.success("Ripple Posted!");
       })
       .catch((e) => toast.error(e?.response?.data || "Something went wrong!"))
       .finally(() => setLoading(false));
