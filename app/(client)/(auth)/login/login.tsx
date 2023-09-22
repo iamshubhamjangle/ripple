@@ -64,62 +64,99 @@ const Login: React.FC<any> = ({ searchParams }) => {
   };
 
   return (
-    <div className="m-4">
-      <h1 className="font-bold text-2xl my-3">Login</h1>
+    <>
+      <div className="flex flex-col space-y-2 text-center">
+        <h1 className="text-2xl font-semibold tracking-tight">
+          Login to your account
+        </h1>
+        <p className="text-sm text-muted-foreground">
+          Enter your email and password to login
+        </p>
+      </div>
       <form
         onSubmit={handleLoginWithCredentials}
         className="flex flex-col gap-4"
       >
         <div>
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" name="email" required />
+          {/* <Label htmlFor="email">Email</Label> */}
+          <Input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+          />
         </div>
         <div>
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" name="password" required />
+          {/* <Label htmlFor="password">Password</Label> */}
+          <Input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
         </div>
-        <Link className="ml-auto" href="forgot-password">
-          Forgot your password?
-        </Link>
         <Button type="submit" disabled={loading} loading={loading}>
           Login
         </Button>
-        <Button
-          type="button"
-          variant="outline"
-          onClick={handleLoginWithGoogleOAuth}
-          disabled={loading}
-          loading={loading}
-          className="border-blue-600 text-blue-600 hover:text-blue-600"
-        >
-          <svg
-            className="w-4 h-4 mr-2 text-blue-600"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 18 19"
-          >
-            <path
-              fillRule="evenodd"
-              d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Sign in with Google
-        </Button>
-        {searchParams?.callbackUrl ? (
-          <a
-            href={`/register?callbackUrl=${encodeURIComponent(
-              searchParams?.callbackUrl
-            )}`}
-          >
-            Not having a account? Register here.
-          </a>
-        ) : (
-          <a href={`/register`}>Not having a account? Register here.</a>
-        )}
       </form>
-    </div>
+      <div>
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground">Or</span>
+          </div>
+        </div>
+        <div className="mt-6">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={handleLoginWithGoogleOAuth}
+            disabled={loading}
+            loading={loading}
+            className="border-primary text-primary hover:text-primary w-full"
+          >
+            <svg
+              className="w-4 h-4 mr-2 text-primary"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 18 19"
+            >
+              <path
+                fillRule="evenodd"
+                d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Sign in with Google
+          </Button>
+        </div>
+        <div className="mt-6 text-center text-sm space-y-2">
+          <div className="block">
+            <Link href="/forgot-password">Forgot your password?</Link>
+          </div>
+          <div className="block">
+            {searchParams?.callbackUrl ? (
+              <Link
+                href={`/register?callbackUrl=${encodeURIComponent(
+                  searchParams?.callbackUrl
+                )}`}
+              >
+                Not having a account? Register here.
+              </Link>
+            ) : (
+              <Link href={`/register`}>
+                Not having a account? Register here.
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

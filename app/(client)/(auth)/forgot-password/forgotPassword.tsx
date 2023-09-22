@@ -8,6 +8,7 @@ import { Button } from "@/app/(client)/_components/ui/button";
 import { Input } from "@/app/(client)/_components/ui/input";
 import { Label } from "@/app/(client)/_components/ui/label";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const ForgotPassword: React.FC<any> = ({ searchParams }) => {
   const [loading, setLoading] = useState(false);
@@ -71,37 +72,84 @@ const ForgotPassword: React.FC<any> = ({ searchParams }) => {
 
   if (!token) {
     return (
-      <div className="m-4">
-        <h1 className="font-bold text-2xl my-3">
-          Recover your account password
-        </h1>
+      <>
+        <div className="flex flex-col space-y-2 text-center">
+          <h1 className="text-2xl font-semibold tracking-tight">
+            Recover your account
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            Enter your email below to receive a password reset link.
+          </p>
+        </div>
         <form onSubmit={passwordRecovery} className="flex flex-col gap-4">
           <div>
-            <Label htmlFor="email">Your Email</Label>
-            <Input id="email" type="email" name="email" required />
+            {/* <Label htmlFor="email">Your Email</Label> */}
+            <Input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
           </div>
           <Button type="submit" disabled={loading} loading={loading}>
             Submit
           </Button>
         </form>
-      </div>
+        <div>
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-background px-2 text-muted-foreground">
+                Or
+              </span>
+            </div>
+          </div>
+          <div className="mt-6 text-center text-sm space-y-2">
+            <div>
+              <Link href="/login">
+                Already having a account? Login instead.
+              </Link>
+            </div>
+            <div>
+              <Link href="/register">Not having a account? Register here.</Link>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="m-4">
-      <h1 className="font-bold text-2xl my-3">Change your account password</h1>
+    <>
+      <div className="flex flex-col space-y-2 text-center">
+        <h1 className="text-2xl font-semibold tracking-tight">
+          Recover your account
+        </h1>
+        <p className="text-sm text-muted-foreground">
+          Generate a new password for your account
+        </p>
+      </div>
       <form onSubmit={passwordUpdate} className="flex flex-col gap-4">
         <div>
-          <Label htmlFor="password">New Password</Label>
-          <Input id="password" type="password" name="password" required />
+          {/* <Label htmlFor="password">New Password</Label> */}
+          <Input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="New Password"
+            required
+          />
         </div>
         <div>
-          <Label htmlFor="confirmPassword">Confirm New Password</Label>
+          {/* <Label htmlFor="confirmPassword">Confirm New Password</Label> */}
           <Input
             id="confirmPassword"
             type="password"
             name="confirmPassword"
+            placeholder="Confirm New Password"
             required
           />
         </div>
@@ -109,7 +157,7 @@ const ForgotPassword: React.FC<any> = ({ searchParams }) => {
           Update your password
         </Button>
       </form>
-    </div>
+    </>
   );
 };
 

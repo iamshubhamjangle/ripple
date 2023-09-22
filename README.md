@@ -1,8 +1,9 @@
 User Stories
 
 - ~~Fix LeftNav UserProfile Name, Identifier~~
-- Add picture to FeedItem
-- Update Login/Signup screen - ref: shadcn
+- ~~Add picture to FeedItem~~
+- ~~Update Login/Signup screen UI~~
+- Like/Unlike/Delete/Create from client component doesn't reload/refetch data on the page.
 - Share Post - Generate a share URL and copy it to clipboard
 - Explore Page - Follow people
 - Followers Page
