@@ -7,7 +7,7 @@ const LeftSidebar = async () => {
   const session = await getServerSessionWithoutUser();
 
   return (
-    <div className="flex flex-col justify-between h-full">
+    <div className="flex flex-col justify-between max-w-[220px]">
       <div className="space-y-10">
         <Logo />
         <SidebarNavLinks />

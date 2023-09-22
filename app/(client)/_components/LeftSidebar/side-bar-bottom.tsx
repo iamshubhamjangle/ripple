@@ -24,17 +24,19 @@ const UserNav: React.FC<UserNavProps> = ({ session }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="flex items-center my-8 w-full">
+        <div className="flex items-center my-8">
           <UserNavProfilePic />
-          <div className="flex flex-col w-full overflow-hidden">
-            <span className="font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
-              {session.user.name}
-            </span>
-            <span className="text-sm text-muted-foreground whitespace-nowrap overflow-hidden text-ellipsis">
-              @{session.user.identifier}
-            </span>
+          <div className="hidden md:flex">
+            <div className="flex flex-col overflow-hidden max-w-[160px]">
+              <span className="font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+                {session.user.name}
+              </span>
+              <span className="text-sm text-muted-foreground whitespace-nowrap overflow-hidden text-ellipsis">
+                @{session.user.identifier}
+              </span>
+            </div>
+            <MoreHorizontal />
           </div>
-          <MoreHorizontal />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>

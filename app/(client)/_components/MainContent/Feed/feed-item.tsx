@@ -41,7 +41,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
         <div className="flex gap-4 p-4">
           <FeedItemAvatar imageSrc={authorProfilePicture} avatarName={name} />
           <div className="flex flex-col gap-3">
-            <div className="flex items-center overflow-x-hidden">
+            <div className="flex flex-row flex-wrap items-center overflow-x-hidden">
               <span className="text-lg font-bold mr-2 whitespace-nowrap overflow-hidden text-ellipsis">
                 {name}
               </span>
@@ -54,7 +54,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
               </span>
             </div>
             <p className="whitespace-pre-wrap">{body}</p>
-            <div className="flex items-center space-x-8 text-sm text-muted-foreground">
+            <div className="flex flex-row flex-wrap items-center space-x-8 text-sm text-muted-foreground">
               <FeedItemLikeDislike likes={likes} postId={id} />
               <FeedItemComment postId={id} />
               <FeedItemShare postId={id} />

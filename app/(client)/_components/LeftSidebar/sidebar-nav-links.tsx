@@ -60,8 +60,10 @@ const SidebarNavLinks = async () => {
           const Icon = link.icon;
           return (
             <li key={link.href} className="flex">
-              <Icon className="mr-2 h-6 w-6" />
-              <Link href={link.href}>{link.name}</Link>
+              <Icon className="mr-0 md:mr-2 h-6 w-6" />
+              <Link className="hidden md:block" href={link.href}>
+                {link.name}
+              </Link>
             </li>
           );
         })}

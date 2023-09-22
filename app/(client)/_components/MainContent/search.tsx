@@ -3,7 +3,7 @@ import { SearchIcon } from "lucide-react";
 
 const Search = () => {
   return (
-    <div className="my-4 relative">
+    <div className="my-4 relative w-full">
       <SearchIcon className="absolute top-3 left-3 w-4 h-4 text-slate-400" />
       <Input type="text" placeholder="      Search Ripples" />
     </div>
