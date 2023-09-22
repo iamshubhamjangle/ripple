@@ -1,7 +1,9 @@
 import Link from "next/link";
 import {
+  Bot,
   HomeIcon,
   LucideSettings,
+  TrendingUpIcon,
   Unlock,
   UserCircle2,
   UserPlus2,
@@ -30,7 +32,21 @@ const SidebarNavLinks = async () => {
     {
       name: "Followers",
       href: "/followers",
+      icon: Bot,
+      secure: true,
+      showOnLoggedIn: true,
+    },
+    {
+      name: "Following",
+      href: "/following",
       icon: UserPlus2,
+      secure: true,
+      showOnLoggedIn: true,
+    },
+    {
+      name: "Trending",
+      href: "/trending",
+      icon: TrendingUpIcon,
       secure: true,
       showOnLoggedIn: true,
     },
