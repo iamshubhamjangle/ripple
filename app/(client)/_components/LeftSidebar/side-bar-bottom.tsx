@@ -1,7 +1,7 @@
 "use client";
 
 import { signOut } from "next-auth/react";
-import { HelpCircle, LogOut, MoreHorizontal } from "lucide-react";
+import { HelpCircle, Info, LogOut, MoreHorizontal } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -9,8 +9,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/app/(client)/_components/ui/dropdown-menu";
-import { ModeToggle } from "@/app/(client)/_components/ui/mode-toggle";
 import UserNavProfilePic from "@/app/(client)/_components/LeftSidebar/user-nav-profile-pic";
+import Link from "next/link";
 
 interface UserNavProps {
   session: any;
@@ -40,13 +40,21 @@ const UserNav: React.FC<UserNavProps> = ({ session }) => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
-        <ModeToggle />
-        <DropdownMenuItem onClick={() => {}}>
-          <HelpCircle className="mr-2" /> Help & Support
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => signOut()}>
+        <Link href={"/about"}>
+          <DropdownMenuItem onClick={() => {}} className="cursor-pointer">
+            <Info className="mr-2" />
+            <span>About</span>
+          </DropdownMenuItem>
+        </Link>
+        <Link href={"/support"}>
+          <DropdownMenuItem onClick={() => {}} className="cursor-pointer">
+            <HelpCircle className="mr-2" />
+            <span>Help & Support</span>
+          </DropdownMenuItem>
+        </Link>
+        <DropdownMenuItem onClick={() => signOut()} className="cursor-pointer">
           <LogOut className="mr-2" />
-          Logout
+          <span>Logout</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
