@@ -15,7 +15,7 @@ export function ModeToggle() {
   const { setTheme } = useTheme();
 
   return (
-    <div className="flex justify-around items-center my-2">
+    <div className="flex space-x-2 items-center my-2">
       <Tooltip>
         <TooltipTrigger asChild>
           <Button

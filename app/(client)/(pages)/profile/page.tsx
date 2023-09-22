@@ -1,10 +1,10 @@
 import React from "react";
 
 import prisma from "@/app/_lib/db";
-import Settings from "@/app/(client)/settings/settings";
+import Profile from "@/app/(client)/(pages)/profile/profile";
 import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
 
-const SettingsPage = async () => {
+const ProfilePage = async () => {
   const session = await getServerSessionWithoutUser();
 
   const userProfile = await prisma.userProfile.findFirst({
@@ -21,7 +21,7 @@ const SettingsPage = async () => {
     },
   });
 
-  return <Settings initialData={userProfile} />;
+  return <Profile initialData={userProfile} />;
 };
 
-export default SettingsPage;
+export default ProfilePage;

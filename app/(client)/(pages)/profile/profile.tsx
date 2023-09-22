@@ -34,7 +34,7 @@ import { Label } from "@/app/(client)/_components/ui/label";
 // REACT_FORM_STEP_1 Imports
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Checkbox } from "../_components/ui/checkbox";
+import { Checkbox } from "../../_components/ui/checkbox";
 import { format } from "date-fns";
 import { cn } from "@/app/_lib/utils";
 import axios from "axios";
@@ -52,7 +52,7 @@ const UserProfileSchema = z.object({
   emailMarketing: z.boolean().optional(),
 });
 
-interface SettingsProps {
+interface ProfileProps {
   initialData?: {
     id: string | null;
     bio: string | null;
@@ -68,7 +68,7 @@ interface SettingsProps {
   } | null;
 }
 
-const Settings: React.FC<SettingsProps> = ({ initialData }) => {
+const Profile: React.FC<ProfileProps> = ({ initialData }) => {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -88,7 +88,7 @@ const Settings: React.FC<SettingsProps> = ({ initialData }) => {
   async function onSubmit(values: z.infer<typeof UserProfileSchema>) {
     setLoading(true);
     axios
-      .post("/api/settings", values)
+      .post("/api/Profile", values)
       .then(() => {
         toast.success("Saved successfully!");
         router.refresh();
@@ -98,7 +98,19 @@ const Settings: React.FC<SettingsProps> = ({ initialData }) => {
   }
 
   return (
-    <div>
+    <div className="container py-6 px-2 md:px-4">
+      <div className="flex justify-between">
+        <h2 className="text-3xl font-bold tracking-tight">Your Profile</h2>
+        <Button
+          type="submit"
+          size="lg"
+          loading={loading}
+          disabled={loading}
+          onClick={form.handleSubmit(onSubmit)}
+        >
+          Save
+        </Button>
+      </div>
       <div className="grid w-full items-center gap-5 my-4">
         <div>
           <Label htmlFor="username">Username</Label>
@@ -257,18 +269,10 @@ const Settings: React.FC<SettingsProps> = ({ initialData }) => {
               </FormItem>
             )}
           />
-          <Button type="submit" loading={loading} disabled={loading}>
-            Submit
-          </Button>
         </form>
       </Form>
-      <div className="my-4">
-        <Button type="button">
-          <Link href="/">Go back to Home Page</Link>
-        </Button>
-      </div>
     </div>
   );
 };
 
-export default Settings;
+export default Profile;

@@ -13,27 +13,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-[100vh] flex items-center">
-      <div className="grid grid-cols-[1fr_1fr]">
-        <div className="flex flex-col justify-between h-[90vh]">
-          <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex rounded-l-md bg-zinc-900 bg-signup-background bg-cover bg-center">
-            <div className="relative z-20 flex items-center text-lg font-medium ">
+    <div className="h-full grid place-items-center">
+      <div className="flex h-[90vh]">
+        <div className="hidden lg:flex flex-col justify-between w-1/2">
+          <div className="flex flex-col h-full p-10 justify-between rounded-l-md bg-zinc-900 bg-signup-background bg-cover bg-center">
+            <div className="flex items-center">
               <LogoIcon className="h-8 w-8 mr-2" />
               <span className="text-primary font-black">Ripple</span>
             </div>
-            <div className="relative z-20 mt-auto">
-              <blockquote className="space-y-2">
-                <p className="text-lg">
-                  &ldquo;Where Your Thoughts Create Waves - Share your moments,
-                  spark conversations, and make ripples in the world with your
-                  ideas.&rdquo;
-                </p>
-              </blockquote>
-            </div>
+            <blockquote>
+              &ldquo;Where Your Thoughts Create Waves - Share your moments,
+              spark conversations, and make ripples in the world with your
+              ideas.&rdquo;
+            </blockquote>
           </div>
         </div>
-        <div className="lg:p-8 border-y border-r rounded-r-md flex">
-          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px]">
+        <div className="p-8 border rounded lg:rounded-r-md flex w-full lg:w-1/2">
+          <div className="mx-auto w-full flex flex-col justify-center space-y-6">
             {children}
             <p className="px-8 text-center text-sm text-muted-foreground">
               By continuing, you agree to our{" "}
