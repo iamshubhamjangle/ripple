@@ -11,7 +11,7 @@ import {
   TooltipTrigger,
 } from "@/app/(client)/_components/ui/tooltip";
 
-export function ModeToggle() {
+export function ThemeToggle() {
   const { setTheme } = useTheme();
 
   return (

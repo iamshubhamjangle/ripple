@@ -25,10 +25,12 @@ export default function RootLayout({
           <div className="flex h-full w-full">
             <div className="hidden lg:flex flex-col justify-between w-1/2">
               <div className="flex flex-col h-full p-10 justify-between bg-zinc-900 bg-signup-background bg-cover bg-center">
-                <div className="flex items-center">
-                  <LogoIcon className="h-8 w-8 mr-2" />
-                  <span className="text-primary font-black">Ripple</span>
-                </div>
+                <Link href="/">
+                  <div className="flex items-center">
+                    <LogoIcon className="h-8 w-8 mr-2" />
+                    <span className="text-primary font-black">Ripple</span>
+                  </div>
+                </Link>
                 <blockquote className="text-white font-semibold">
                   &ldquo;Where Your Thoughts Create Waves - Share your moments,
                   spark conversations, and make ripples in the world with your

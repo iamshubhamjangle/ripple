@@ -5,6 +5,8 @@ User Stories
 - ~~Update Login/Signup screen UI~~
 - ~~Responsive Design - Mobile/Desktop~~
 - ~~Like/Unlike/Delete/Create from Client component doesn't refetch data on the page.~~
+- Refactor api/setting to api/profile
+- Refactor getServerSession() to serverAuth()
 - Share Post - Generate a share URL and copy it to clipboard
 - Comment Post
 - Explore Page - Follow people

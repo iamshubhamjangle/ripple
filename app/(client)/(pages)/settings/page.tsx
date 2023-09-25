@@ -1,4 +1,4 @@
-import { ModeToggle } from "../../_components/ui/mode-toggle";
+import { ThemeToggle } from "@/app/(client)/_components/ui/mode-toggle";
 
 const Page = () => {
   return (
@@ -9,7 +9,7 @@ const Page = () => {
       <div className="grid w-full items-center gap-5 my-4">
         <div className="flex items-center space-x-4">
           <p>Current Theme</p>
-          <ModeToggle />
+          <ThemeToggle />
         </div>
       </div>
     </div>

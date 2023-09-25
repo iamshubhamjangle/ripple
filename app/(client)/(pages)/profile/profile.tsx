@@ -53,19 +53,7 @@ const UserProfileSchema = z.object({
 });
 
 interface ProfileProps {
-  initialData?: {
-    id: string | null;
-    bio: string | null;
-    gender: any;
-    birthDate: Date | null;
-    privateProfile: boolean | null;
-    emailMarketing: boolean | null;
-    userId: string | null;
-    user: {
-      name: string | null;
-      email: string | null;
-    };
-  } | null;
+  initialData?: any;
 }
 
 const Profile: React.FC<ProfileProps> = ({ initialData }) => {
@@ -76,11 +64,11 @@ const Profile: React.FC<ProfileProps> = ({ initialData }) => {
   const form = useForm<z.infer<typeof UserProfileSchema>>({
     resolver: zodResolver(UserProfileSchema),
     defaultValues: {
-      bio: initialData?.bio || "",
-      gender: initialData?.gender || undefined,
-      birthDate: initialData?.birthDate || undefined,
-      privateProfile: initialData?.privateProfile || true,
-      emailMarketing: initialData?.emailMarketing || false,
+      bio: initialData?.bio,
+      gender: initialData?.gender,
+      birthDate: initialData?.birthDate,
+      privateProfile: initialData?.privateProfile,
+      emailMarketing: initialData?.emailMarketing,
     },
   });
 
