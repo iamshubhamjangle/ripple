@@ -76,7 +76,7 @@ const Profile: React.FC<ProfileProps> = ({ initialData }) => {
   async function onSubmit(values: z.infer<typeof UserProfileSchema>) {
     setLoading(true);
     axios
-      .post("/api/Profile", values)
+      .post("/api/profile", values)
       .then(() => {
         toast.success("Saved successfully!");
         router.refresh();
