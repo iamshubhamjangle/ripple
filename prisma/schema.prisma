@@ -28,7 +28,8 @@ model User {
 
   accounts        Account[]
   
-  userProfile     UserProfile?  // Required only for setting page for tutorial
+  // Optional
+  userProfile     UserProfile?
   posts           Post[]
   comments        Comment[]
   likes           Like[]
@@ -53,7 +54,6 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-// Required only for setting page for form tutorial
 model UserProfile {
   id                String   @id @default(cuid())
   bio               String?
