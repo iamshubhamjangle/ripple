@@ -6,13 +6,13 @@ User Stories
 - ~~Responsive Design - Mobile/Desktop~~
 - ~~Like/Unlike/Delete/Create from Client component doesn't refetch data on the page.~~
 - Share Post - Generate a share URL and copy it to clipboard
+- Comment Post
 - Explore Page - Follow people
 - Followers Page
 - Following Page
 - Trending Section - Render Top 5 Liked Posts in last 24hrs
 - Optimistic Delete
 - Optimistic Like
-- Comment Post
 
 ## Getting Started
 
