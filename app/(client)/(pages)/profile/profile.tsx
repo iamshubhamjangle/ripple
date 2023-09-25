@@ -64,11 +64,11 @@ const Profile: React.FC<ProfileProps> = ({ initialData }) => {
   const form = useForm<z.infer<typeof UserProfileSchema>>({
     resolver: zodResolver(UserProfileSchema),
     defaultValues: {
-      bio: initialData?.bio,
-      gender: initialData?.gender,
-      birthDate: initialData?.birthDate,
-      privateProfile: initialData?.privateProfile,
-      emailMarketing: initialData?.emailMarketing,
+      bio: initialData?.bio || undefined,
+      gender: initialData?.gender || undefined,
+      birthDate: initialData?.birthDate || undefined,
+      privateProfile: initialData?.privateProfile || undefined,
+      emailMarketing: initialData?.emailMarketing || undefined,
     },
   });
 
