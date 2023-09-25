@@ -9,7 +9,7 @@ User Stories
 - ~~Refactor getServerSession() to serverAuth()~~
 - Share Post - Generate a share URL and copy it to clipboard
 - Comment Post
-- Explore Page - Follow people
+- Explore Page - Follow new people
 - Followers Page
 - Following Page
 - Trending Section - Render Top 5 Liked Posts in last 24hrs

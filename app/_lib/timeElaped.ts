@@ -1,4 +1,4 @@
-export function getTimeElapsed(timestamp: any) {
+export function getTimeElapsed(timestamp: Date) {
   const now: any = new Date();
   const then: any = new Date(timestamp);
   const elapsedMilliseconds: number = now - then;

@@ -4,7 +4,7 @@ import Feed from "@/app/(client)/_components/MainContent/Feed/feed";
 
 const MainContent = () => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col">
       <Search />
       <CreatePost />
       <Feed />
