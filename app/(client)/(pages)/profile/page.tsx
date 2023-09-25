@@ -2,10 +2,10 @@ import React from "react";
 
 import prisma from "@/app/_lib/db";
 import Profile from "@/app/(client)/(pages)/profile/profile";
-import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
+import { serverAuth } from "@/app/_lib/serverAuth";
 
 const ProfilePage = async () => {
-  const session = await getServerSessionWithoutUser();
+  const session = await serverAuth();
 
   const userProfile = await prisma.userProfile.findFirst({
     where: {

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import prisma from "@/app/_lib/db";
-import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
+import { serverAuth } from "@/app/_lib/serverAuth";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export async function POST(
@@ -9,7 +9,7 @@ export async function POST(
   { params }: { params: { postId: string } }
 ) {
   try {
-    const session = await getServerSessionWithoutUser();
+    const session = await serverAuth();
     if (!session) return new NextResponse("Unauthorized", { status: 401 });
 
     if (!params.postId) {

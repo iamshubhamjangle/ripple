@@ -1,10 +1,10 @@
 import UserNav from "@/app/(client)/_components/LeftSidebar/side-bar-bottom";
 import SidebarNavLinks from "@/app/(client)/_components/LeftSidebar/sidebar-nav-links";
 import Logo from "./logo-bar";
-import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
+import { serverAuth } from "@/app/_lib/serverAuth";
 
 const LeftSidebar = async () => {
-  const session = await getServerSessionWithoutUser();
+  const session = await serverAuth();
 
   return (
     <div className="flex flex-col justify-between max-w-[220px]">

@@ -9,10 +9,10 @@ import {
   UserPlus2,
 } from "lucide-react";
 
-import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
+import { serverAuth } from "@/app/_lib/serverAuth";
 
 const SidebarNavLinks = async () => {
-  const session = await getServerSessionWithoutUser();
+  const session = await serverAuth();
 
   const links = [
     {

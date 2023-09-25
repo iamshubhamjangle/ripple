@@ -1,8 +1,8 @@
 import CreatePostForm from "@/app/(client)/_components/MainContent/CreatePost/create-post-form";
-import { getServerSessionWithoutUser } from "@/app/_lib/serverAuth";
+import { serverAuth } from "@/app/_lib/serverAuth";
 
 const CreatePost = async () => {
-  const session = await getServerSessionWithoutUser();
+  const session = await serverAuth();
   if (!session) return null;
 
   return <CreatePostForm />;
