@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   Bot,
+  Compass,
   HomeIcon,
   LucideSettings,
   TrendingUpIcon,
@@ -47,6 +48,13 @@ const SidebarNavLinks = async () => {
       name: "Trending",
       href: "/trending",
       icon: TrendingUpIcon,
+      secure: true,
+      showOnLoggedIn: true,
+    },
+    {
+      name: "Explore",
+      href: "/explore",
+      icon: Compass,
       secure: true,
       showOnLoggedIn: true,
     },

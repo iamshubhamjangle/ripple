@@ -1,7 +1,7 @@
-import FeedItemDelete from "@/app/(client)/_components/MainContent/Feed/feed-item-delete";
-import FeedItemLikeDislike from "@/app/(client)/_components/MainContent/Feed/feed-item-like-dislike";
-import FeedItemComment from "@/app/(client)/_components/MainContent/Feed/feed-item-comment";
-import FeedItemShare from "@/app/(client)/_components/MainContent/Feed/feed-item-share";
+import FeedItemDelete from "@/app/(client)/_components/MainContent/Feed/feed-item-action-delete";
+import FeedItemLikeDislike from "@/app/(client)/_components/MainContent/Feed/feed-item-action-like-dislike";
+import FeedItemComment from "@/app/(client)/_components/MainContent/Feed/feed-item-action-comment";
+import FeedItemShare from "@/app/(client)/_components/MainContent/Feed/feed-item-action-share";
 
 interface FeedItemActionsProps {
   postId: string;
