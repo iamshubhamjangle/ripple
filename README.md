@@ -11,10 +11,10 @@ User Stories
 - ~~Comment Post~~
 - ~~Like Comments~~
 - ~~Reply to Comments + also mention @userId while replying~~
+- Trending Section - Render Top 5 Liked Posts in last 24hrs
 - Explore Page - Follow new people
 - Followers Page
 - Following Page
-- Trending Section - Render Top 5 Liked Posts in last 24hrs
 - Optimistic Delete
 - Optimistic Like
 
