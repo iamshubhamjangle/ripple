@@ -1,10 +1,10 @@
-import { Card, CardContent } from "@/app/(client)/_components/ui/card";
-import { getTimeElapsed } from "@/app/_lib/timeElaped";
+import { Like } from "@prisma/client";
 
+import { Card, CardContent } from "@/app/(client)/_components/ui/card";
 import FeedItemAvatar from "@/app/(client)/_components/MainContent/Feed/feed-item-avatar";
-import FeedItemBody from "./feed-item-body";
-import FeedItemActions from "./feed-item-actions";
-import FeedItemHeader from "./feed-item-header";
+import FeedItemBody from "@/app/(client)/_components/MainContent/Feed/feed-item-body";
+import FeedItemActions from "@/app/(client)/_components/MainContent/Feed/feed-item-actions";
+import FeedItemHeader from "@/app/(client)/_components/MainContent/Feed/feed-item-header";
 
 interface FeedItemProps {
   id: string;
@@ -14,12 +14,8 @@ interface FeedItemProps {
   uniqueName: string;
   timestamp: Date;
   body: string;
-  likes: {
-    id: string;
-    userId: string;
-    postId: string;
-  }[];
-  comments: number;
+  likes: Like[];
+  commentsCount: number;
   shares: number;
 }
 
@@ -32,7 +28,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
   timestamp,
   body,
   likes,
-  comments,
+  commentsCount,
   shares,
 }) => {
   return (
@@ -47,7 +43,12 @@ const FeedItem: React.FC<FeedItemProps> = ({
               uniqueName={uniqueName}
             />
             <FeedItemBody postId={id} postBody={body} />
-            <FeedItemActions postId={id} likes={likes} authorId={authorId} />
+            <FeedItemActions
+              postId={id}
+              likes={likes}
+              authorId={authorId}
+              commentsCount={commentsCount}
+            />
           </div>
         </div>
       </CardContent>

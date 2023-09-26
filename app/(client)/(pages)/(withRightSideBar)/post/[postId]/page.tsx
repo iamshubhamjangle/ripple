@@ -1,6 +1,6 @@
-import prisma from "@/app/_lib/db";
-import PostItem from "../../../../_components/MainContent/Post/post-item";
 import Link from "next/link";
+import prisma from "@/app/_lib/db";
+import PostItem from "@/app/(client)/_components/MainContent/Post/post-item";
 
 const Page = async ({ params }: { params: { postId: string } }) => {
   const post = await prisma.post.findFirst({
@@ -8,7 +8,24 @@ const Page = async ({ params }: { params: { postId: string } }) => {
       id: params.postId,
     },
     include: {
+      _count: {
+        select: {
+          comments: true,
+        },
+      },
       likes: true,
+      comments: {
+        include: {
+          user: {
+            select: {
+              id: true,
+              name: true,
+              identifier: true,
+              image: true,
+            },
+          },
+        },
+      },
       user: {
         select: {
           id: true,

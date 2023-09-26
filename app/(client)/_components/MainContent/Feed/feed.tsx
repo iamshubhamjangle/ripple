@@ -5,6 +5,11 @@ const Feed = async () => {
   const posts = await prisma.post.findMany({
     include: {
       likes: true,
+      _count: {
+        select: {
+          comments: true,
+        },
+      },
       user: { select: { id: true, name: true, image: true, identifier: true } },
     },
   });
@@ -25,7 +30,7 @@ const Feed = async () => {
                 name={post.user.name || ""}
                 body={post.body}
                 timestamp={post.createdAt}
-                comments={0}
+                commentsCount={post._count.comments}
                 likes={post.likes}
                 shares={post.shares}
               />

@@ -24,10 +24,11 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
         postId={post.id}
         authorId={post.user.id}
         likes={post.likes}
+        commentsCount={post._count.comments}
       />
       <Separator />
       <PostItemCommentForm postId={post.id} />
-      <PostItemComments postId={post.id} />
+      <PostItemComments comments={post.comments} />
     </div>
   );
 };

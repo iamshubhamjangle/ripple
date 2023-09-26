@@ -1,41 +1,24 @@
-import prisma from "@/app/_lib/db";
-import FeedItemAvatar from "../Feed/feed-item-avatar";
-import PostItemCommentHeader from "./post-item-comment-header";
-import PostItemCommentActions from "./post-item-comment-actions";
-import { Separator } from "../../ui/separator";
+import { Separator } from "@/app/(client)/_components/ui/separator";
+import FeedItemAvatar from "@/app/(client)/_components/MainContent/Feed/feed-item-avatar";
+import PostItemCommentHeader from "@/app/(client)/_components/MainContent/Post/post-item-comment-header";
+import PostItemCommentActions from "@/app/(client)/_components/MainContent/Post/post-item-comment-actions";
 
 interface PostItemCommentProps {
-  postId: string;
+  comments: any;
 }
 
-const PostItemComments: React.FC<PostItemCommentProps> = async ({ postId }) => {
-  const comments =
-    postId &&
-    (await prisma.comment.findMany({
-      where: {
-        postId,
-      },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            identifier: true,
-            image: true,
-          },
-        },
-      },
-    }));
-
+const PostItemComments: React.FC<PostItemCommentProps> = async ({
+  comments,
+}) => {
   if (!comments) return null;
 
   return (
     <div className="space-y-2">
       <h2>Comments</h2>
-      {comments.map((comment) => {
+      {comments.map((comment: any) => {
         return (
-          <>
-            <div key={comment.id} className="flex flex-row gap-2 py-2">
+          <div key={comment.id}>
+            <div className="flex flex-row gap-2 py-2">
               <FeedItemAvatar
                 avatarName={comment.user.name || ""}
                 imageSrc={comment.user.image}
@@ -51,7 +34,7 @@ const PostItemComments: React.FC<PostItemCommentProps> = async ({ postId }) => {
               </div>
             </div>
             <Separator />
-          </>
+          </div>
         );
       })}
     </div>
