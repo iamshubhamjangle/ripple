@@ -11,7 +11,7 @@ const FeedItemShare: React.FC<FeedItemShareProps> = ({ postId }) => {
   const sharePost = (id: string) => {
     const link = `${window.location.host}/post/${id}`;
     navigator.clipboard.writeText(link);
-    toast.success(`Link Copied to clipboard`);
+    toast.success(`Link Copied. Now you share it with your friends.`);
   };
 
   return (

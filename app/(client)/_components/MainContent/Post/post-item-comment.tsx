@@ -5,10 +5,12 @@ import PostItemCommentActions from "@/app/(client)/_components/MainContent/Post/
 
 interface PostItemCommentProps {
   comments: any;
+  postId: string;
 }
 
 const PostItemComments: React.FC<PostItemCommentProps> = async ({
   comments,
+  postId,
 }) => {
   if (!comments) return null;
 
@@ -30,7 +32,11 @@ const PostItemComments: React.FC<PostItemCommentProps> = async ({
                   timestamp={comment.createdAt}
                 />
                 <div className="text-base">{comment.body}</div>
-                <PostItemCommentActions />
+                <PostItemCommentActions
+                  commentId={comment.id}
+                  postId={postId}
+                  likes={comment.likes}
+                />
               </div>
             </div>
             <Separator />

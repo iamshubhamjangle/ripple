@@ -28,7 +28,8 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
       />
       <Separator />
       <PostItemCommentForm postId={post.id} />
-      <PostItemComments comments={post.comments} />
+      <PostItemComments postId={post.id} comments={post.comments} />
+      {/* <pre>{JSON.stringify(post, null, 2)}</pre> */}
     </div>
   );
 };

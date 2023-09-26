@@ -1,10 +1,26 @@
-import { HeartIcon, ReplyIcon } from "lucide-react";
+import PostItemCommentActionComment from "@/app/(client)/_components/MainContent/Post/post-item-comment-action-comment";
+import PostItemCommentActionsLike from "@/app/(client)/_components/MainContent/Post/post-item-comment-action-like";
+import { Like } from "@prisma/client";
 
-const PostItemCommentActions = () => {
+interface PostItemCommentActionsProps {
+  postId: string;
+  commentId: string;
+  likes: Like[];
+}
+
+const PostItemCommentActions: React.FC<PostItemCommentActionsProps> = ({
+  postId,
+  commentId,
+  likes,
+}) => {
   return (
     <div className="mt-3 flex gap-8">
-      <HeartIcon className="mr-1 h-4 w-4" />
-      <ReplyIcon className="mr-1 h-4 w-4" />
+      <PostItemCommentActionsLike
+        postId={postId}
+        commentId={commentId}
+        likes={likes}
+      />
+      <PostItemCommentActionComment />
     </div>
   );
 };

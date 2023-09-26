@@ -8,7 +8,9 @@ User Stories
 - ~~Refactor api/setting to api/profile~~
 - ~~Refactor getServerSession() to serverAuth()~~
 - ~~Share Post - Generate a share URL and copy it to clipboard~~
-- Comment Post
+- ~~Comment Post~~
+- Like Comments
+- Reply to Comments
 - Explore Page - Follow new people
 - Followers Page
 - Following Page

@@ -16,6 +16,7 @@ const Page = async ({ params }: { params: { postId: string } }) => {
       likes: true,
       comments: {
         include: {
+          likes: true,
           user: {
             select: {
               id: true,
