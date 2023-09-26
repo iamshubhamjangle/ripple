@@ -24,7 +24,7 @@ Install the dependencies
 npm i
 ```
 
-Edit the `.env` file
+## Edit the `.env` file
 
 ```
 # To generate 32 bit secret > openssl rand -base64 32 | paste --delimiters '' --serial
@@ -54,20 +54,7 @@ AWS_SES_REGION="us-east-2"
 AWS_SES_SENDER="yourverifiedemail@gmail.com"
 ```
 
-After Create/Modifing the Prisma schema
-
-```
-npx prisma generate
-```
-
-(DONT_USE_IN_PRODUCTION) Push the prisma.schema to Postgre DB, this can reset the db in case of major changes as this is used only to quickly prototype, iterate and get db to desired end-state
-
-```js
-npx prisma db push
-// npx prisma generate will be triggered automatically
-```
-
-Migrations
+## Database Migrations
 
 ```
 npx prisma migrate dev --name migration-name --create-only
@@ -76,7 +63,7 @@ npx prisma migrate dev
 // Restart the prisma studio
 ```
 
-Run the development server:
+## Run the development server:
 
 ```
 npm run dev

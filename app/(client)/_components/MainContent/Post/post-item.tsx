@@ -1,7 +1,8 @@
 import PostItemNavbar from "@/app/(client)/_components/MainContent/Post/post-item-navbar";
-import FeedItemAvatar from "../Feed/feed-item-avatar";
-import { getTimeElapsed } from "@/app/_lib/timeElaped";
-import FeedItemActions from "../Feed/feed-item-actions";
+import FeedItemActions from "@/app/(client)/_components/MainContent/Feed/feed-item-actions";
+import PostItemContent from "@/app/(client)/_components/MainContent/Post/post-item-content";
+import PostItemComment from "@/app/(client)/_components/MainContent/Post/post-item-comment";
+import { Separator } from "@/app/(client)/_components/ui/separator";
 
 interface PostItemProps {
   post: any;
@@ -9,38 +10,22 @@ interface PostItemProps {
 
 const PostItem: React.FC<PostItemProps> = ({ post }) => {
   return (
-    <div className="max-w-3xl">
+    <div className="max-w-3xl my-6 space-y-4">
       <PostItemNavbar postId={post.id} />
-      <div className="my-6">
-        <div className="flex gap-4 items-center">
-          <FeedItemAvatar
-            avatarName={post.user.name}
-            imageSrc={post.user.image}
-          />
-          <div>
-            <span className="text-lg font-bold mr-2 whitespace-nowrap overflow-hidden text-ellipsis">
-              {post.user.name}
-            </span>
-            <div>
-              <span className="text-sm text-muted-foreground mr-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-[10rem]">
-                @{post.user.identifier}
-              </span>
-              <span className="text-sm text-muted-foreground mr-2">•</span>
-              <span className="text-sm text-muted-foreground mr-2">
-                {getTimeElapsed(post.createdAt)}
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="my-4">
-          <p className="whitespace-pre-wrap">{post.body}</p>
-        </div>
-      </div>
+      <PostItemContent
+        authorName={post.user.name}
+        authorIdentifier={post.user.identifier}
+        authorImage={post.user.image}
+        postBody={post.body}
+        postCreatedAt={post.createdAt}
+      />
       <FeedItemActions
         postId={post.id}
         authorId={post.user.id}
         likes={post.likes}
       />
+      <Separator />
+      <PostItemComment />
     </div>
   );
 };

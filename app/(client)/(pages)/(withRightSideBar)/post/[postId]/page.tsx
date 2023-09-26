@@ -30,11 +30,7 @@ const Page = async ({ params }: { params: { postId: string } }) => {
       </div>
     );
 
-  return (
-    <div className="my-6">
-      <PostItem post={post} />
-    </div>
-  );
+  return <PostItem post={post} />;
 };
 
 export default Page;
