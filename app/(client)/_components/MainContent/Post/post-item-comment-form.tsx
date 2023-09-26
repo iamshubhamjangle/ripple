@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import axios from "axios";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -24,10 +24,14 @@ const postItemPostCommentformSchema = z.object({
 
 interface PostItemCommentFormProps {
   postId: string;
+  closeDropdown: () => void;
+  initialCommentBody?: string;
 }
 
 const PostItemCommentForm: React.FC<PostItemCommentFormProps> = ({
   postId,
+  closeDropdown,
+  initialCommentBody,
 }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -35,7 +39,7 @@ const PostItemCommentForm: React.FC<PostItemCommentFormProps> = ({
   const form = useForm<z.infer<typeof postItemPostCommentformSchema>>({
     resolver: zodResolver(postItemPostCommentformSchema),
     defaultValues: {
-      commentBody: "",
+      commentBody: initialCommentBody ? initialCommentBody : "",
     },
   });
 
@@ -48,7 +52,10 @@ const PostItemCommentForm: React.FC<PostItemCommentFormProps> = ({
         router.refresh();
       })
       .catch((e) => toast.error(e?.response?.data || "Something went wrong!"))
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        closeDropdown();
+      });
   }
 
   return (

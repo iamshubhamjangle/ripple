@@ -36,6 +36,7 @@ const PostItemComments: React.FC<PostItemCommentProps> = async ({
                   commentId={comment.id}
                   postId={postId}
                   likes={comment.likes}
+                  identifier={comment.user.identifier}
                 />
               </div>
             </div>

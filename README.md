@@ -9,8 +9,8 @@ User Stories
 - ~~Refactor getServerSession() to serverAuth()~~
 - ~~Share Post - Generate a share URL and copy it to clipboard~~
 - ~~Comment Post~~
-- Like Comments
-- Reply to Comments
+- ~~Like Comments~~
+- ~~Reply to Comments + also mention @userId while replying~~
 - Explore Page - Follow new people
 - Followers Page
 - Following Page

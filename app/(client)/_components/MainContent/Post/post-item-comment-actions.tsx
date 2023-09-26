@@ -6,12 +6,14 @@ interface PostItemCommentActionsProps {
   postId: string;
   commentId: string;
   likes: Like[];
+  identifier: string;
 }
 
 const PostItemCommentActions: React.FC<PostItemCommentActionsProps> = ({
   postId,
   commentId,
   likes,
+  identifier,
 }) => {
   return (
     <div className="mt-3 flex gap-8">
@@ -20,7 +22,7 @@ const PostItemCommentActions: React.FC<PostItemCommentActionsProps> = ({
         commentId={commentId}
         likes={likes}
       />
-      <PostItemCommentActionComment />
+      <PostItemCommentActionComment postId={postId} identifier={identifier} />
     </div>
   );
 };
