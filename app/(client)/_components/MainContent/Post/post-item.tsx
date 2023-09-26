@@ -1,8 +1,9 @@
-import PostItemNavbar from "@/app/(client)/_components/MainContent/Post/post-item-navbar";
-import FeedItemActions from "@/app/(client)/_components/MainContent/Feed/feed-item-actions";
-import PostItemContent from "@/app/(client)/_components/MainContent/Post/post-item-content";
-import PostItemComment from "@/app/(client)/_components/MainContent/Post/post-item-comment";
 import { Separator } from "@/app/(client)/_components/ui/separator";
+import FeedItemActions from "@/app/(client)/_components/MainContent/Feed/feed-item-actions";
+import PostItemNavbar from "@/app/(client)/_components/MainContent/Post/post-item-navbar";
+import PostItemContent from "@/app/(client)/_components/MainContent/Post/post-item-content";
+import PostItemComments from "@/app/(client)/_components/MainContent/Post/post-item-comment";
+import PostItemCommentForm from "@/app/(client)/_components/MainContent/Post/post-item-comment-form";
 
 interface PostItemProps {
   post: any;
@@ -25,7 +26,8 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
         likes={post.likes}
       />
       <Separator />
-      <PostItemComment />
+      <PostItemCommentForm postId={post.id} />
+      <PostItemComments postId={post.id} />
     </div>
   );
 };

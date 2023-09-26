@@ -73,7 +73,7 @@ const CreatePostForm = () => {
                       placeholder="What's rippling in your mind?"
                     />
                   </FormControl>
-                  <FormMessage></FormMessage>
+                  <FormMessage />
                 </FormItem>
               )}
             />

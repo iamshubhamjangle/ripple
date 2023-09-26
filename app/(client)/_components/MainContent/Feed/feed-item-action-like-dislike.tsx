@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { HeartIcon, Loader2, Trash2 } from "lucide-react";
+import { HeartIcon, Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

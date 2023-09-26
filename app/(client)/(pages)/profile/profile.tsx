@@ -231,6 +231,7 @@ const Profile: React.FC<ProfileProps> = ({ initialData }) => {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -254,6 +255,7 @@ const Profile: React.FC<ProfileProps> = ({ initialData }) => {
                     order/payment/account send to your mailbox
                   </FormDescription>
                 </div>
+                <FormMessage />
               </FormItem>
             )}
           />
