@@ -28,12 +28,23 @@ model User {
 
   accounts        Account[]
   
-  // Optional
   userProfile     UserProfile?
   posts           Post[]
   comments        Comment[]
   likes           Like[]
   commentLikes    CommentLike[]
+  followers       Follows[] @relation("following")
+  following       Follows[] @relation("follower")
+}
+
+model Follows {
+  followerId  String
+  followingId String
+
+  follower    User @relation("follower", fields: [followerId], references: [id])
+  following   User @relation("following", fields: [followingId], references: [id])
+
+  @@id([followerId, followingId])
 }
 
 model Account {

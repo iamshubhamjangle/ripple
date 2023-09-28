@@ -30,8 +30,6 @@ const Trending = async () => {
     take: 5, // Limit the result to the top 10 posts
   });
 
-  console.log("topLikedPosts", JSON.stringify(topLikedPosts, null, 2));
-
   return (
     <div className="h-[40vh] bg-secondary rounded-md p-4 overflow-y-auto scrollbar-none">
       <h2 className="text-xl font-bold pb-2">Trending</h2>

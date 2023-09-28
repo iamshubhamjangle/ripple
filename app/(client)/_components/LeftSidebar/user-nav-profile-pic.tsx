@@ -6,17 +6,11 @@ import {
   AvatarImage,
 } from "@/app/(client)/_components/ui/avatar";
 import { Button } from "@/app/(client)/_components/ui/button";
+import { getInitials } from "@/app/_lib/utils";
 import { useSession } from "next-auth/react";
 
 const UserNavProfilePic = () => {
   const { data: session } = useSession();
-
-  function getInitials(name: string) {
-    if (!name) return "";
-    const words = name.split(" ");
-    const initials = words.map((word) => word.charAt(0).toUpperCase());
-    return initials.slice(0, 2).join(""); // Take the first two initials
-  }
 
   return (
     <Button
