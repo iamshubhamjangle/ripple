@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
       await sendEmail(user.name || "User", email, passwordResetLink);
     } catch (error) {
       console.error(error);
-      return new NextResponse("Email service is currently down.", {
+      return new NextResponse("This service is currently not available.", {
         status: 503,
       });
     }

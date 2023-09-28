@@ -7,10 +7,9 @@ import { useRouter } from "next/navigation";
 
 import { Button } from "@/app/(client)/_components/ui/button";
 import { Input } from "@/app/(client)/_components/ui/input";
-import { Label } from "@/app/(client)/_components/ui/label";
 import Link from "next/link";
 
-const Login: React.FC<any> = ({ searchParams }) => {
+const Login: React.FC<any> = ({ searchParams, IS_EMAIL_SERVICE_ENABLED }) => {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -136,9 +135,11 @@ const Login: React.FC<any> = ({ searchParams }) => {
           </Button>
         </div>
         <div className="mt-6 text-center text-sm space-y-2">
-          <div className="block">
-            <Link href="/forgot-password">Forgot your password?</Link>
-          </div>
+          {IS_EMAIL_SERVICE_ENABLED && (
+            <div className="block">
+              <Link href="/forgot-password">Forgot your password?</Link>
+            </div>
+          )}
           <div className="block">
             {searchParams?.callbackUrl ? (
               <Link
