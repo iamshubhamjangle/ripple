@@ -19,6 +19,12 @@ body,
   border-radius: 10px;
 }
 
+@keyframes rotate {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
 @layer base {
   @layer base {
     :root {

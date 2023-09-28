@@ -25,9 +25,9 @@ export default function RootLayout({
                 </div>
               </Link>
               <blockquote className="text-white font-semibold">
-                &ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quam, neque nesciunt molestias hic amet pariatur ab eius rerum
-                eveniet placeat at rem commodi nemo.&rdquo;
+                &ldquo;Where Your Thoughts Create Waves - Share your moments,
+                spark conversations, and make ripples in the world with our
+                tweet-inspired platform.&rdquo;
               </blockquote>
             </div>
           </div>
