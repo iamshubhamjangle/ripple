@@ -24,7 +24,7 @@ const postItemPostCommentformSchema = z.object({
 
 interface PostItemCommentFormProps {
   postId: string;
-  closeDropdown: () => void;
+  closeDropdown?: () => void;
   initialCommentBody?: string;
 }
 
@@ -54,7 +54,7 @@ const PostItemCommentForm: React.FC<PostItemCommentFormProps> = ({
       .catch((e) => toast.error(e?.response?.data || "Something went wrong!"))
       .finally(() => {
         setLoading(false);
-        closeDropdown();
+        closeDropdown && closeDropdown();
       });
   }
 
