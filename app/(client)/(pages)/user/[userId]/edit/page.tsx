@@ -1,8 +1,8 @@
 import React from "react";
 
 import prisma from "@/app/_lib/db";
-import Profile from "@/app/(client)/(pages)/profile/profile";
 import { serverAuth } from "@/app/_lib/serverAuth";
+import Profile from "@/app/(client)/(pages)/user/[userId]/edit/profile";
 
 const ProfilePage = async () => {
   const session = await serverAuth();

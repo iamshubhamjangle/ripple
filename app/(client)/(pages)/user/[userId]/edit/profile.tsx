@@ -1,6 +1,14 @@
 "use client";
 
+import * as z from "zod";
+import axios from "axios";
+import { cn } from "@/app/_lib/utils";
+import { toast } from "react-hot-toast";
+import { format } from "date-fns";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon } from "lucide-react";
 
 import {
@@ -30,18 +38,7 @@ import { Input } from "@/app/(client)/_components/ui/input";
 import { Button } from "@/app/(client)/_components/ui/button";
 import { Switch } from "@/app/(client)/_components/ui/switch";
 import { Label } from "@/app/(client)/_components/ui/label";
-
-// REACT_FORM_STEP_1 Imports
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Checkbox } from "../../_components/ui/checkbox";
-import { format } from "date-fns";
-import { cn } from "@/app/_lib/utils";
-import axios from "axios";
-import { toast } from "react-hot-toast";
-import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Checkbox } from "@/app/(client)/_components/ui/checkbox";
 
 // REACT_FORM_STEP_2 Define form schema
 const UserProfileSchema = z.object({
@@ -88,7 +85,7 @@ const Profile: React.FC<ProfileProps> = ({ initialData }) => {
   return (
     <div className="container py-6 px-2 md:px-4">
       <div className="flex justify-between">
-        <h2 className="text-3xl font-bold tracking-tight">Your Profile</h2>
+        <h2 className="text-3xl font-bold tracking-tight">Edit Profile</h2>
         <Button
           type="submit"
           size="lg"

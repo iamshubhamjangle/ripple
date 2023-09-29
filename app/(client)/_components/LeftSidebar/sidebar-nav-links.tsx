@@ -25,7 +25,7 @@ const SidebarNavLinks = async () => {
     },
     {
       name: "Profile",
-      href: "/profile",
+      href: `/user/${session?.user.id}`,
       icon: UserCircle2,
       secure: true,
       showOnLoggedIn: true,

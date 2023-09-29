@@ -3,53 +3,19 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/app/(client)/_components/ui/avatar";
-import { serverAuth } from "@/app/_lib/serverAuth";
 import { getInitials } from "@/app/_lib/utils";
-import prisma from "@/app/_lib/db";
 import FeedItem from "../Feed/feed-item";
 import { Button } from "../../ui/button";
+import Link from "next/link";
 
-const UserProfile = async () => {
-  const session = await serverAuth();
-  const user = await prisma.user.findFirst({
-    where: {
-      id: session?.user.id,
-    },
-    select: {
-      id: true,
-      image: true,
-      name: true,
-      identifier: true,
-      userProfile: true,
-      posts: {
-        include: {
-          user: {
-            select: {
-              id: true,
-              image: true,
-              identifier: true,
-              name: true,
-            },
-          },
-          _count: {
-            select: {
-              comments: true,
-            },
-          },
-          likes: true,
-        },
-      },
-      _count: {
-        select: {
-          posts: true,
-        },
-      },
-    },
-  });
+interface UserProfileProps {
+  user: any;
+}
 
+const UserProfile: React.FC<UserProfileProps> = async ({ user }) => {
   return (
-    <>
-      <div className="relative mx-auto my-6 flex flex-col items-center h-full w-full">
+    <div className="container py-6 px-2 md:px-4">
+      <div className="relative flex flex-col items-center">
         <div
           className="relative mt-1 flex h-32 w-full justify-center rounded-xl"
           style={{
@@ -84,12 +50,17 @@ const UserProfile = async () => {
         </div>
         <div className="mt-6 mb-3 flex flex-wrap gap-10">
           <Button size={"lg"}>Follow</Button>
+          <Link href={`/user/${user?.id}/edit`}>
+            <Button size={"lg"} variant={"outline"}>
+              Edit Profile
+            </Button>
+          </Link>
         </div>
         <div className="mx-8">
           <h2 className="text-xl font-bold tracking-tight pt-4">Your Post</h2>
           <div className="h-full space-y-4 my-4">
             {user?.posts &&
-              user.posts.map((post) => {
+              user.posts.map((post: any) => {
                 return (
                   <FeedItem
                     key={post.id}
@@ -110,7 +81,7 @@ const UserProfile = async () => {
           {/* <pre>{JSON.stringify(posts, null, 2)}</pre> */}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
