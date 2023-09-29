@@ -18,6 +18,8 @@ const Page = async ({ params }: { params: { userId: string } }) => {
       name: true,
       identifier: true,
       userProfile: true,
+      following: true,
+      followers: true,
       posts: {
         include: {
           user: {
@@ -39,6 +41,8 @@ const Page = async ({ params }: { params: { userId: string } }) => {
       _count: {
         select: {
           posts: true,
+          following: true,
+          followers: true,
         },
       },
     },

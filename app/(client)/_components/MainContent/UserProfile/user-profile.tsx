@@ -1,13 +1,17 @@
+import Link from "next/link";
+import { Session } from "next-auth";
+
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/app/(client)/_components/ui/avatar";
+
+import { Follows } from "@prisma/client";
 import { getInitials } from "@/app/_lib/utils";
-import FeedItem from "../Feed/feed-item";
-import { Button } from "../../ui/button";
-import Link from "next/link";
-import { Session } from "next-auth";
+import { Button } from "@/app/(client)/_components/ui/button";
+import FeedItem from "@/app/(client)/_components/MainContent/Feed/feed-item";
+import FollowUnfollow from "@/app/(client)/_components/MainContent/UserProfile/follow-unfollow";
 
 interface UserProfileProps {
   user: any;
@@ -16,6 +20,9 @@ interface UserProfileProps {
 
 const UserProfile: React.FC<UserProfileProps> = async ({ user, session }) => {
   const userId = session?.user.id;
+  const showUnFollowButton = user?.followers.find(
+    (item: Follows) => item.followerId === session?.user.id
+  );
 
   return (
     <div className="container py-6 px-2 md:px-4">
@@ -44,18 +51,22 @@ const UserProfile: React.FC<UserProfileProps> = async ({ user, session }) => {
             <p className="text-sm font-normal">Posts</p>
           </div>
           <div className="flex flex-col items-center justify-center">
-            <h3 className="text-2xl font-bold">9.7K</h3>
-            <p className="text-sm font-normal">Followers</p>
+            <h3 className="text-2xl font-bold">{user._count.following}</h3>
+            <p className="text-sm font-normal">Following</p>
           </div>
           <div className="flex flex-col items-center justify-center">
-            <h3 className="text-2xl font-bold">434</h3>
-            <p className="text-sm font-normal">Following</p>
+            <h3 className="text-2xl font-bold">{user._count.followers}</h3>
+            <p className="text-sm font-normal">Followers</p>
           </div>
         </div>
         <div className="mt-6 mb-3 flex flex-wrap gap-2 md:gap-10">
-          <Button size={"lg"} className="w-full md:w-fit">
-            Follow
-          </Button>
+          {userId && userId !== user?.id && (
+            <FollowUnfollow
+              userId={user?.id}
+              showFollowButton={!showUnFollowButton}
+            />
+          )}
+
           {userId && userId === user?.id && (
             <Link href={`/user/edit`} className="w-full md:w-fit">
               <Button
@@ -92,7 +103,9 @@ const UserProfile: React.FC<UserProfileProps> = async ({ user, session }) => {
                 );
               })}
           </div>
-          {/* <pre>{JSON.stringify(posts, null, 2)}</pre> */}
+          {/* <div className="max-w-3xl overflow-x-auto">
+            <pre>{JSON.stringify(user, null, 2)}</pre>
+          </div> */}
         </div>
       </div>
     </div>
