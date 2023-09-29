@@ -31,7 +31,7 @@ const Trending = async () => {
   });
 
   return (
-    <div className="h-[40vh] bg-secondary rounded-md p-4 overflow-y-auto scrollbar-none">
+    <div className="h-[60vh] bg-secondary rounded-md p-4 overflow-y-auto scrollbar-none">
       <h2 className="text-xl font-bold pb-2">Trending</h2>
       <div className="h-fit">
         {topLikedPosts.map((post) => {
@@ -45,7 +45,7 @@ const Trending = async () => {
                   </span>
                 </div>
                 <p className="line-clamp-2">{post.body}</p>
-                <Separator className="my-4 bg-slate-600" />
+                <Separator className="my-4 dark:bg-slate-700" />
               </div>
             </Link>
           );

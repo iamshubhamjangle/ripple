@@ -49,7 +49,7 @@ const Page = async () => {
           Trending <span className="ml-2 text-xl">TOP 10</span>
         </h2>
       </div>
-      <div className="grid w-full items-center gap-5 my-4">
+      <div className="w-full my-6">
         <div className="h-full space-y-4 my-4">
           {topLikedPosts &&
             topLikedPosts.map((post) => {

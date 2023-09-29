@@ -20,7 +20,7 @@ export async function POST(
     const followTo = params.userId;
 
     if (userId === followTo)
-      return new NextResponse("Invalid Request", { status: 400 });
+      return new NextResponse("You cannot follow yourself", { status: 400 });
 
     const existingFollow = await prisma.follows.findUnique({
       where: {

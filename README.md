@@ -12,6 +12,8 @@ User Stories
 - ~~Like Comments~~
 - ~~Reply to Comments + also mention @userId while replying~~
 - ~~Trending Section - Render Top 5 Liked Posts in last 24hrs~~
+- ~~User Profile Page~~
+- ~~Follow Unfollow User~~
 - Explore Page - Follow new people
 - Followers Page
 - Following Page

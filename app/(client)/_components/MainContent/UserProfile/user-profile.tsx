@@ -43,7 +43,7 @@ const UserProfile: React.FC<UserProfileProps> = async ({ user, session }) => {
         </div>
         <div className="mt-16 flex flex-col items-center">
           <h4 className="text-xl font-bold">{user?.name}</h4>
-          <p className="text-base font-normal">{user?.userProfile?.bio}</p>
+          <p className="text-sm text-center">{user?.userProfile?.bio}</p>
         </div>
         <div className="mt-6 mb-3 flex gap-4 md:!gap-14">
           <div className="flex flex-col items-center justify-center">

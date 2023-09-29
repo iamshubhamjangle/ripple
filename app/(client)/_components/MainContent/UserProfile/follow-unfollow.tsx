@@ -32,8 +32,7 @@ const FollowUnfollow: React.FC<FollowUnfollowProps> = ({
     <div className="w-full space-x-4">
       {showFollowButton && (
         <Button
-          size={"lg"}
-          className="w-full md:w-fit"
+          className="w-full md:w-fit py-2 h-auto"
           onClick={() => onToggleFollow(userId)}
           loading={loading}
           disabled={loading}
@@ -44,7 +43,7 @@ const FollowUnfollow: React.FC<FollowUnfollowProps> = ({
       {!showFollowButton && (
         <Button
           size={"lg"}
-          className="w-full md:w-fit"
+          className="w-full md:w-fit py-2 h-auto"
           onClick={() => onToggleFollow(userId)}
           loading={loading}
           disabled={loading}
