@@ -1,3 +1,4 @@
+import { serverAuth } from "@/app/_lib/serverAuth";
 import UserProfile from "../../../_components/MainContent/UserProfile/user-profile";
 import prisma from "@/app/_lib/db";
 
@@ -6,6 +7,7 @@ const Page = async ({ params }: { params: { userId: string } }) => {
     return <>User doesn&apos;t exist</>;
   }
 
+  const session = await serverAuth();
   const user = await prisma.user.findFirst({
     where: {
       id: params.userId,
@@ -42,7 +44,7 @@ const Page = async ({ params }: { params: { userId: string } }) => {
     },
   });
 
-  return <UserProfile user={user} />;
+  return <UserProfile user={user} session={session} />;
 };
 
 export default Page;

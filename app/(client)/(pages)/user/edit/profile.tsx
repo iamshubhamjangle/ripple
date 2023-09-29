@@ -85,7 +85,7 @@ const Profile: React.FC<ProfileProps> = ({ initialData }) => {
   return (
     <div className="container py-6 px-2 md:px-4">
       <div className="flex justify-between">
-        <h2 className="text-3xl font-bold tracking-tight">Edit Profile</h2>
+        <h2 className="text-3xl font-bold tracking-tight">Edit Your Profile</h2>
         <Button
           type="submit"
           size="lg"

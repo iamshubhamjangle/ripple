@@ -7,12 +7,16 @@ import { getInitials } from "@/app/_lib/utils";
 import FeedItem from "../Feed/feed-item";
 import { Button } from "../../ui/button";
 import Link from "next/link";
+import { Session } from "next-auth";
 
 interface UserProfileProps {
   user: any;
+  session: Session | null;
 }
 
-const UserProfile: React.FC<UserProfileProps> = async ({ user }) => {
+const UserProfile: React.FC<UserProfileProps> = async ({ user, session }) => {
+  const userId = session?.user.id;
+
   return (
     <div className="container py-6 px-2 md:px-4">
       <div className="relative flex flex-col items-center">
@@ -48,16 +52,26 @@ const UserProfile: React.FC<UserProfileProps> = async ({ user }) => {
             <p className="text-sm font-normal">Following</p>
           </div>
         </div>
-        <div className="mt-6 mb-3 flex flex-wrap gap-10">
-          <Button size={"lg"}>Follow</Button>
-          <Link href={`/user/${user?.id}/edit`}>
-            <Button size={"lg"} variant={"outline"}>
-              Edit Profile
-            </Button>
-          </Link>
+        <div className="mt-6 mb-3 flex flex-wrap gap-2 md:gap-10">
+          <Button size={"lg"} className="w-full md:w-fit">
+            Follow
+          </Button>
+          {userId && userId === user?.id && (
+            <Link href={`/user/edit`} className="w-full md:w-fit">
+              <Button
+                size={"lg"}
+                variant={"outline"}
+                className="w-full md:w-fit"
+              >
+                Edit Profile
+              </Button>
+            </Link>
+          )}
         </div>
-        <div className="mx-8">
-          <h2 className="text-xl font-bold tracking-tight pt-4">Your Post</h2>
+        <div>
+          <h2 className="text-xl font-bold tracking-tight pt-4">
+            Your Post&apos;s
+          </h2>
           <div className="h-full space-y-4 my-4">
             {user?.posts &&
               user.posts.map((post: any) => {

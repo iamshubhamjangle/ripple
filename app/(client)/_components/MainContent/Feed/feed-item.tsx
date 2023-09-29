@@ -38,6 +38,7 @@ const FeedItem: React.FC<FeedItemProps> = ({
           <FeedItemAvatar imageSrc={authorProfilePicture} avatarName={name} />
           <div className="flex flex-col gap-3">
             <FeedItemHeader
+              authorId={authorId}
               name={name}
               timestamp={timestamp}
               uniqueName={uniqueName}
