@@ -1,6 +1,6 @@
 import prisma from "@/app/_lib/db";
 import { serverAuth } from "@/app/_lib/serverAuth";
-import ExploreUserList from "@/app/(client)/(pages)/(withRightSideBar)/explore/exploreUserList";
+import UserListWithAction from "@/app/(client)/_components/MainContent/User/user-list-with-action";
 
 const Page = async () => {
   const session = await serverAuth();
@@ -21,7 +21,7 @@ const Page = async () => {
         <h2 className="text-3xl font-bold tracking-tight">Explore</h2>
       </div>
       <div className="w-full my-6">
-        <ExploreUserList users={nonFollowedUsers} />
+        <UserListWithAction users={nonFollowedUsers} showFollowButton={true} />
       </div>
     </div>
   );
