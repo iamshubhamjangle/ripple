@@ -50,14 +50,18 @@ const UserProfile: React.FC<UserProfileProps> = async ({ user, session }) => {
             <h3 className="text-2xl font-bold">{user?._count.posts}</h3>
             <p className="text-sm font-normal">Posts</p>
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <h3 className="text-2xl font-bold">{user._count.following}</h3>
-            <p className="text-sm font-normal">Following</p>
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <h3 className="text-2xl font-bold">{user._count.followers}</h3>
-            <p className="text-sm font-normal">Followers</p>
-          </div>
+          <Link href={"/following"}>
+            <div className="flex flex-col items-center justify-center">
+              <h3 className="text-2xl font-bold">{user._count.following}</h3>
+              <p className="text-sm font-normal">Following</p>
+            </div>
+          </Link>
+          <Link href={"/followers"}>
+            <div className="flex flex-col items-center justify-center">
+              <h3 className="text-2xl font-bold">{user._count.followers}</h3>
+              <p className="text-sm font-normal">Followers</p>
+            </div>
+          </Link>
         </div>
         <div className="mt-6 mb-3 flex flex-wrap gap-2 md:gap-10">
           {userId && userId !== user?.id && (
