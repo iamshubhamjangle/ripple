@@ -41,8 +41,8 @@ const Page = async () => {
             <UserListItem
               key={user.id}
               identifier={user.identifier}
-              image={user.image || ""}
-              name={user.name || ""}
+              image={user.image}
+              name={user.name}
               actions={<RemoveUserButton userId={user.id} />}
             />
           );

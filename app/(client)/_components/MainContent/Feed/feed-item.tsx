@@ -9,8 +9,8 @@ import FeedItemHeader from "@/app/(client)/_components/MainContent/Feed/feed-ite
 interface FeedItemProps {
   id: string;
   authorId: string;
-  authorProfilePicture?: string | null;
-  name: string;
+  authorProfilePicture: string | null;
+  name: string | null;
   uniqueName: string;
   timestamp: Date;
   body: string;

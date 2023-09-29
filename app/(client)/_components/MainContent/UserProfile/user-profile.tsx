@@ -97,7 +97,7 @@ const UserProfile: React.FC<UserProfileProps> = async ({ user, session }) => {
                     authorId={post.user.id}
                     authorProfilePicture={post.user.image}
                     uniqueName={post.user.identifier}
-                    name={post.user.name || ""}
+                    name={post.user.name}
                     body={post.body}
                     timestamp={post.createdAt}
                     commentsCount={post._count.comments}

@@ -17,7 +17,7 @@ User Stories
 - ~~Explore Page - Follow new people~~
 - ~~Followers Page~~
 - ~~Following Page~~
-- Fix the API route
+- ~~Fix the API route~~
 - Optimistic Delete
 - Optimistic Like
 

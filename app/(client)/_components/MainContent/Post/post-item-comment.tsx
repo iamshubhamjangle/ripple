@@ -22,12 +22,12 @@ const PostItemComments: React.FC<PostItemCommentProps> = async ({
           <div key={comment.id}>
             <div className="flex flex-row gap-2 py-2">
               <FeedItemAvatar
-                avatarName={comment.user.name || ""}
+                avatarName={comment.user.name}
                 imageSrc={comment.user.image}
               />
               <div>
                 <PostItemCommentHeader
-                  name={comment.user.name || ""}
+                  name={comment.user.name}
                   uniqueName={comment.user.identifier}
                   timestamp={comment.createdAt}
                 />

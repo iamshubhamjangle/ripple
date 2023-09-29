@@ -3,7 +3,7 @@ import Link from "next/link";
 
 interface FeedItemHeaderProps {
   authorId: string;
-  name: string;
+  name: string | null;
   uniqueName: string;
   timestamp: Date;
 }

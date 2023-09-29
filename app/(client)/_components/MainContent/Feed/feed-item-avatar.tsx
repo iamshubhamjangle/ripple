@@ -7,8 +7,8 @@ import {
 } from "@/app/(client)/_components/ui/avatar";
 
 interface FeedItemAvatarProps {
-  imageSrc?: string | null;
-  avatarName: string;
+  imageSrc: string | null;
+  avatarName: string | null;
 }
 
 const FeedItemAvatar: React.FC<FeedItemAvatarProps> = ({
@@ -24,8 +24,8 @@ const FeedItemAvatar: React.FC<FeedItemAvatarProps> = ({
 
   return (
     <Avatar className="h-10 w-10 shadow-md">
-      <AvatarImage src={imageSrc || ""} alt="user avatar" />
-      <AvatarFallback>{getInitials(avatarName)}</AvatarFallback>
+      <AvatarImage src={imageSrc || undefined} alt="user avatar" />
+      <AvatarFallback>{getInitials(avatarName || "")}</AvatarFallback>
     </Avatar>
   );
 };

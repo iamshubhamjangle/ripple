@@ -1,8 +1,8 @@
 import FeedItemAvatar from "@/app/(client)/_components/MainContent/Feed/feed-item-avatar";
 
 interface UserListItemProps {
-  image: string;
-  name: string;
+  name: string | null;
+  image: string | null;
   identifier: string;
   actions?: React.ReactNode;
 }

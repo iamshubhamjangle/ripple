@@ -11,6 +11,8 @@ import { useSession } from "next-auth/react";
 
 const UserNavProfilePic = () => {
   const { data: session } = useSession();
+  const name = session?.user?.name;
+  const image = session?.user?.image;
 
   return (
     <Button
@@ -18,8 +20,8 @@ const UserNavProfilePic = () => {
       className="relative h-8 w-8 rounded-full shadow-sm mr-2"
     >
       <Avatar className="h-8 w-8">
-        <AvatarImage src={session?.user?.image || ""} alt="user avatar" />
-        <AvatarFallback>{getInitials(session?.user?.name)}</AvatarFallback>
+        <AvatarImage src={image} alt="user avatar" />
+        <AvatarFallback>{getInitials(name || "")}</AvatarFallback>
       </Avatar>
     </Button>
   );

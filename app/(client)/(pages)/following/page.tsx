@@ -40,9 +40,9 @@ const Page = async () => {
           return (
             <UserListItem
               key={id}
-              name={name || ""}
+              name={name}
               identifier={identifier}
-              image={image || ""}
+              image={image}
               actions={<FollowUnfollow showFollowButton={false} userId={id} />}
             />
           );
