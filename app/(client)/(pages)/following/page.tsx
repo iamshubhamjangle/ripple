@@ -1,8 +1,6 @@
-import { serverAuth } from "@/app/_lib/serverAuth";
 import prisma from "@/app/_lib/db";
-import UserListWithAction from "../../_components/MainContent/User/user-list-with-action";
-import { User } from "@prisma/client";
-import UserListItem from "../../_components/MainContent/User/user-list-item";
+import { serverAuth } from "@/app/_lib/serverAuth";
+import UserListItem from "@/app/(client)/_components/MainContent/User/user-list-item";
 
 const Page = async () => {
   const session = await serverAuth();

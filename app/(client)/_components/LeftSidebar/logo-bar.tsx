@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LogoIcon } from "../Icons/logoIcon";
+import { LogoIcon } from "@/app/(client)/_components/Icons/logoIcon";
 
 const Logo = () => {
   return (

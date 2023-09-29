@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/app/(client)/_components/ui/dropdown-menu";
-import PostItemCommentForm from "./post-item-comment-form";
+import PostItemCommentForm from "@/app/(client)/_components/MainContent/Post/post-item-comment-form";
 import { useState } from "react";
 
 interface PostItemCommentActionCommentProps {

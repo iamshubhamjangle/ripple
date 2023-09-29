@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import { NextRequest, NextResponse } from "next/server";
 
 import prisma from "@/app/_lib/db";
-import sendEmail from "./sendEmail";
+import sendEmail from "@/app/(server)/api/auth/forgot-password/sendEmail";
 import { signJWT, verifyJWT } from "@/app/_lib/jwt";
 
 /**

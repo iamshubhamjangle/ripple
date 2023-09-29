@@ -1,4 +1,4 @@
-import UserListItem from "./user-list-item";
+import UserListItem from "@/app/(client)/_components/MainContent/User/user-list-item";
 
 interface UserListWithActionProps {
   users: any;

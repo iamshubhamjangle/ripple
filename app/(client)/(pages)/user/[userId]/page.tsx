@@ -1,5 +1,5 @@
 import { serverAuth } from "@/app/_lib/serverAuth";
-import UserProfile from "../../../_components/MainContent/UserProfile/user-profile";
+import UserProfile from "@/app/(client)/_components/MainContent/UserProfile/user-profile";
 import prisma from "@/app/_lib/db";
 
 const Page = async ({ params }: { params: { userId: string } }) => {
