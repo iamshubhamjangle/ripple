@@ -1,20 +1,17 @@
 import FeedItemAvatar from "@/app/(client)/_components/MainContent/Feed/feed-item-avatar";
-import FollowUnfollow from "@/app/(client)/_components/MainContent/UserProfile/follow-unfollow";
 
 interface UserListItemProps {
-  id: string;
   image: string;
   name: string;
   identifier: string;
-  showFollowButton: boolean;
+  actions?: React.ReactNode;
 }
 
 const UserListItem: React.FC<UserListItemProps> = ({
-  id,
   identifier,
   image,
   name,
-  showFollowButton,
+  actions,
 }) => {
   return (
     <div className="my-8 flex justify-between">
@@ -31,9 +28,7 @@ const UserListItem: React.FC<UserListItemProps> = ({
           </span>
         </div>
       </div>
-      <div>
-        <FollowUnfollow showFollowButton={showFollowButton} userId={id} />
-      </div>
+      <div className="flex gap-2">{actions}</div>
     </div>
   );
 };

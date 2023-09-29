@@ -1,20 +1,16 @@
 import UserListItem from "@/app/(client)/_components/MainContent/User/user-list-item";
+import FollowUnfollow from "@/app/(client)/_components/MainContent/User/action-follow-unfollow";
 
 interface UserListWithActionProps {
   users: any;
-  showFollowButton: boolean;
 }
 
 /**
  * Render List of User With Follow/Unfollow Action
  * @param users List of users => { id, name, image, identifier }[]
- * @param showFollowButton Boolean. Whether to show follow button or unfollow button.
  * @returns React.FC<T>
  */
-const UserListWithAction: React.FC<UserListWithActionProps> = ({
-  users,
-  showFollowButton,
-}) => {
+const UserListWithAction: React.FC<UserListWithActionProps> = ({ users }) => {
   return (
     <div>
       {users &&
@@ -22,11 +18,12 @@ const UserListWithAction: React.FC<UserListWithActionProps> = ({
           return (
             <UserListItem
               key={user.id}
-              id={user.id}
-              identifier={user.identifier}
-              image={user.image}
               name={user.name}
-              showFollowButton={showFollowButton}
+              image={user.image}
+              identifier={user.identifier}
+              actions={
+                <FollowUnfollow showFollowButton={true} userId={user.id} />
+              }
             />
           );
         })}

@@ -11,7 +11,7 @@ import { Follows } from "@prisma/client";
 import { getInitials } from "@/app/_lib/utils";
 import { Button } from "@/app/(client)/_components/ui/button";
 import FeedItem from "@/app/(client)/_components/MainContent/Feed/feed-item";
-import FollowUnfollow from "@/app/(client)/_components/MainContent/UserProfile/follow-unfollow";
+import FollowUnfollow from "@/app/(client)/_components/MainContent/User/action-follow-unfollow";
 
 interface UserProfileProps {
   user: any;

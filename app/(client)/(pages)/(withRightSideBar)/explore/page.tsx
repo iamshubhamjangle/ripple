@@ -21,7 +21,7 @@ const Page = async () => {
         <h2 className="text-3xl font-bold tracking-tight">Explore</h2>
       </div>
       <div className="w-full my-6">
-        <UserListWithAction users={nonFollowedUsers} showFollowButton={true} />
+        <UserListWithAction users={nonFollowedUsers} />
       </div>
     </div>
   );

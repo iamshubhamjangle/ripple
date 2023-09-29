@@ -1,6 +1,7 @@
 import prisma from "@/app/_lib/db";
 import { serverAuth } from "@/app/_lib/serverAuth";
 import UserListItem from "@/app/(client)/_components/MainContent/User/user-list-item";
+import FollowUnfollow from "@/app/(client)/_components/MainContent/User/action-follow-unfollow";
 
 const Page = async () => {
   const session = await serverAuth();
@@ -39,11 +40,10 @@ const Page = async () => {
           return (
             <UserListItem
               key={id}
-              id={id}
               name={name || ""}
               identifier={identifier}
               image={image || ""}
-              showFollowButton={false}
+              actions={<FollowUnfollow showFollowButton={false} userId={id} />}
             />
           );
         })}
