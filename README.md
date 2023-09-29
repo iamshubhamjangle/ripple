@@ -14,9 +14,10 @@ User Stories
 - ~~Trending Section - Render Top 5 Liked Posts in last 24hrs~~
 - ~~User Profile Page~~
 - ~~Follow Unfollow User~~
-- Explore Page - Follow new people
-- Followers Page
-- Following Page
+- ~~Explore Page - Follow new people~~
+- ~~Followers Page~~
+- ~~Following Page~~
+- Fix the API route
 - Optimistic Delete
 - Optimistic Like
 

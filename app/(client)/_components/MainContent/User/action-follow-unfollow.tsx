@@ -22,7 +22,7 @@ const FollowUnfollow: React.FC<FollowUnfollowProps> = ({
   const onToggleFollow = async (userId: string) => {
     setLoading(true);
     await axios
-      .post(`/api/user/${userId}/follow`)
+      .post(`/api/user/follow/${userId}`)
       .then(() => router.refresh())
       .catch((e) => toast.error(e?.response?.data || "Something went wrong!"))
       .finally(() => setLoading(false));
