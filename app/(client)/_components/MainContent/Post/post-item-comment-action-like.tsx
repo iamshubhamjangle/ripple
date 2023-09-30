@@ -2,11 +2,11 @@
 
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { HeartIcon, Loader2 } from "lucide-react";
+import { HeartIcon } from "lucide-react";
 import { Like } from "@prisma/client";
+import { experimental_useOptimistic as useOptimistic } from "react";
 
 interface PostItemCommentActionLikeProps {
   postId: string;
@@ -19,26 +19,37 @@ const PostItemCommentActionsLike: React.FC<PostItemCommentActionLikeProps> = ({
   commentId,
   likes,
 }) => {
-  const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
-  const router = useRouter();
+  const userId = session?.user.id;
 
-  const handleCommentLike = () => {
-    setLoading(true);
-    axios
+  const router = useRouter();
+  const [optimisticLikes, setOptimisticLikes] = useOptimistic(likes);
+
+  const isPostCommentLikedByUser =
+    optimisticLikes.findIndex((like) => like.userId === userId) !== -1;
+
+  const handleCommentLike = async () => {
+    if (isPostCommentLikedByUser) {
+      setOptimisticLikes((prevState) => {
+        const idx = prevState.findIndex((like) => like.userId === userId);
+        prevState.splice(idx, 1);
+        return [...prevState];
+      });
+    } else {
+      setOptimisticLikes((prevState) => [
+        ...prevState,
+        { id: "optimistic_like_1", postId, userId },
+      ]);
+    }
+
+    await axios
       .post(
         `/api/post/${postId}/action/comment/${commentId}/action/likeOrUnlike`
       )
-      .then(() => router.refresh())
+      .then(() => {})
       .catch((e) => toast.error(e?.response?.data || "Something went wrong!"))
-      .finally(() => setLoading(false));
+      .finally(() => router.refresh());
   };
-
-  // Loading State
-  if (loading) return <Loader2 className="mr-2 h-4 w-4 animate-spin" />;
-
-  const isPostCommentLikedByUser =
-    likes.findIndex((like) => like.userId === session?.user.id) !== -1;
 
   return (
     <div
@@ -50,7 +61,7 @@ const PostItemCommentActionsLike: React.FC<PostItemCommentActionLikeProps> = ({
       ) : (
         <HeartIcon className="mr-1 h-4 w-4" />
       )}
-      <span>{likes.length || 0}</span>
+      <span>{optimisticLikes.length || 0}</span>
     </div>
   );
 };
