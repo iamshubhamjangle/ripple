@@ -50,15 +50,15 @@ const UserProfile: React.FC<UserProfileProps> = async ({ user, session }) => {
             <h3 className="text-2xl font-bold">{user?._count.posts}</h3>
             <p className="text-sm font-normal">Posts</p>
           </div>
-          <Link href={"/following"}>
+          <Link href={userId === user.id ? "/following" : ""}>
             <div className="flex flex-col items-center justify-center">
-              <h3 className="text-2xl font-bold">{user._count.following}</h3>
+              <h3 className="text-2xl font-bold">{user?._count.following}</h3>
               <p className="text-sm font-normal">Following</p>
             </div>
           </Link>
-          <Link href={"/followers"}>
+          <Link href={userId === user.id ? "/followers" : ""}>
             <div className="flex flex-col items-center justify-center">
-              <h3 className="text-2xl font-bold">{user._count.followers}</h3>
+              <h3 className="text-2xl font-bold">{user?._count.followers}</h3>
               <p className="text-sm font-normal">Followers</p>
             </div>
           </Link>
