@@ -18,8 +18,7 @@ User Stories
 - ~~Followers Page~~
 - ~~Following Page~~
 - ~~Fix the API route~~
-- Optimistic Delete
-- Optimistic Like
+- ~~Optimistic Like~~
 
 ## Getting Started
 

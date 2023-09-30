@@ -1,10 +1,10 @@
 "use client";
 
 import axios from "axios";
-import { HeartIcon, Loader2 } from "lucide-react";
+import { HeartIcon, Info } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { experimental_useOptimistic as useOptimistic } from "react";
 import toast from "react-hot-toast";
 
 interface FeedItemDeleteProps {
@@ -21,23 +21,40 @@ const FeedItemLikeDislike: React.FC<FeedItemDeleteProps> = ({
   likes,
 }) => {
   const { data: session } = useSession();
+  const userId = session?.user.id;
+
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-
-  const likePost = (postId: string) => {
-    setLoading(true);
-    axios
-      .post(`/api/post/${postId}/action/like`)
-      .then(() => router.refresh())
-      .catch((e) => toast.error(e?.response?.data || "Something went wrong!"))
-      .finally(() => setLoading(false));
-  };
-
-  // Loading State
-  if (loading) return <Loader2 className="mr-2 h-4 w-4 animate-spin" />;
+  const [optimisticLikes, setOptimisticLikes] = useOptimistic(likes);
 
   const isPostLikedByUser =
-    likes.findIndex((like) => like.userId === session?.user.id) !== -1;
+    optimisticLikes.findIndex((like) => like.userId === userId) !== -1;
+
+  const likePost = (postId: string) => {
+    if (!session) {
+      return toast("Please login to continue.", {
+        icon: <Info color="orange" />,
+      });
+    }
+
+    if (isPostLikedByUser) {
+      setOptimisticLikes((prevState) => {
+        const idx = prevState.findIndex((like) => like.userId === userId);
+        prevState.splice(idx, 1);
+        return [...prevState];
+      });
+    } else {
+      setOptimisticLikes((prevState) => [
+        ...prevState,
+        { id: "optimistic_like_1", postId, userId },
+      ]);
+    }
+
+    axios
+      .post(`/api/post/${postId}/action/like`)
+      .then(() => {})
+      .catch((e) => toast.error(e?.response?.data || "Something went wrong!"))
+      .finally(() => router.refresh());
+  };
 
   return (
     <div
@@ -49,7 +66,7 @@ const FeedItemLikeDislike: React.FC<FeedItemDeleteProps> = ({
       ) : (
         <HeartIcon className="mr-1 h-4 w-4" />
       )}
-      <span>{likes.length}</span>
+      <span>{optimisticLikes.length}</span>
     </div>
   );
 };
