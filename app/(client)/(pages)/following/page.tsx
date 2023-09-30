@@ -40,6 +40,7 @@ const Page = async () => {
           return (
             <UserListItem
               key={id}
+              id={id}
               name={name}
               identifier={identifier}
               image={image}

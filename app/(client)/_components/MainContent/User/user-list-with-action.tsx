@@ -18,6 +18,7 @@ const UserListWithAction: React.FC<UserListWithActionProps> = ({ users }) => {
           return (
             <UserListItem
               key={user.id}
+              id={user.id}
               name={user.name}
               image={user.image}
               identifier={user.identifier}
