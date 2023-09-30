@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { HeartIcon, Loader2 } from "lucide-react";
+import { HeartIcon, Info, Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -25,6 +25,12 @@ const FeedItemLikeDislike: React.FC<FeedItemDeleteProps> = ({
   const [loading, setLoading] = useState(false);
 
   const likePost = (postId: string) => {
+    if (!session) {
+      return toast("Please login to continue.", {
+        icon: <Info color="orange" />,
+      });
+    }
+
     setLoading(true);
     axios
       .post(`/api/post/${postId}/action/like`)
