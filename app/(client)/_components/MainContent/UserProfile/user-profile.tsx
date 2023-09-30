@@ -83,11 +83,11 @@ const UserProfile: React.FC<UserProfileProps> = async ({ user, session }) => {
             </Link>
           )}
         </div>
-        <div>
+        <div className="w-full h-full">
           <h2 className="text-xl font-bold tracking-tight pt-4">
             Your Post&apos;s
           </h2>
-          <div className="h-full space-y-4 my-4">
+          <div className="space-y-4 my-4">
             {user?.posts &&
               user.posts.map((post: any) => {
                 return (
