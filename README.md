@@ -19,7 +19,7 @@ User Stories
 - ~~Following Page~~
 - ~~Fix the API route~~
 - ~~Optimistic Like~~
-- Implement Search Functionality
+- ~~Implement Search Functionality~~
 
 ## Getting Started
 
