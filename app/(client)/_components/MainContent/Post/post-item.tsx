@@ -11,7 +11,7 @@ interface PostItemProps {
 
 const PostItem: React.FC<PostItemProps> = ({ post }) => {
   return (
-    <div className="max-w-3xl my-6 space-y-4">
+    <div className="max-w-3xl space-y-4">
       <PostItemNavbar postId={post.id} />
       <PostItemContent
         authorName={post.user.name}
