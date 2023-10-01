@@ -20,7 +20,7 @@ const SearchItem: React.FC<SearchItemProps> = ({
   name,
 }) => {
   return (
-    <Link key={id} href={"#"} prefetch={false}>
+    <Link key={id} href={`/user/${id}`} prefetch={false}>
       <div className="flex items-center py-2">
         <Avatar className="h-8 w-8 rounded-full border border-gray-600 mr-2">
           <AvatarImage src={image || undefined} alt="user avatar" />
