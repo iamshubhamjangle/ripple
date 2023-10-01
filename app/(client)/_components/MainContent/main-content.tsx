@@ -1,5 +1,5 @@
 import CreatePost from "@/app/(client)/_components/MainContent/CreatePost/create-post";
-import Search from "@/app/(client)/_components/MainContent/search";
+import Search from "@/app/(client)/_components/MainContent/Search/search";
 import Feed from "@/app/(client)/_components/MainContent/Feed/feed";
 
 const MainContent = () => {
