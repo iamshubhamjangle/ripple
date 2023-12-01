@@ -4,14 +4,14 @@ import { FlameIcon } from "lucide-react";
 import Link from "next/link";
 
 const Trending = async () => {
-  const twentyFourHoursAgo = Date.now() - 7 * 24 * 60 * 60 * 1000; // 24 x 7 hours ago
+  // const twentyFourHoursAgo = Date.now() - 7 * 24 * 60 * 60 * 1000; // 24 x 7 hours ago
 
   const topLikedPosts = await prisma.post.findMany({
-    where: {
-      createdAt: {
-        gte: new Date(twentyFourHoursAgo), // Posts created in the last 24 hours
-      },
-    },
+    // where: {
+    //   createdAt: {
+    //     gte: new Date(twentyFourHoursAgo), // Posts created in the last 24 hours
+    //   },
+    // },
     select: {
       id: true,
       body: true,
