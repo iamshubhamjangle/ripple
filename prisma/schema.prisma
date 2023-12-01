@@ -2,54 +2,57 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["fullTextSearch"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "multiSchema"]
 }
 
 // If you want to use Prisma Migrate, you will need to manually create a shadow database
 // https://neon.tech/docs/guides/prisma-migrate#configure-a-shadow-database-for-prisma-migrate
 // make sure to append ?connect_timeout=10 to the connection string
 datasource db {
-  provider = "postgresql"
-  url  	= env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
-  // shadowDatabaseUrl = env(“SHADOW_DATABASE_URL”)
+  schemas   = ["ripple"]
 }
 
 model User {
-  id              String    @id @default(cuid())
-  name            String?
-  identifier      String    @unique @default(nanoid(8))   // https://github.com/viascom/nanoid-postgres/blob/main/nanoid.sql
-  email           String?   @unique
-  emailVerified   DateTime?
-  image           String?
-  hashedPassword  String?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id             String    @id @default(cuid())
+  name           String?
+  identifier     String    @unique @default(nanoid(8)) // https://github.com/viascom/nanoid-postgres/blob/main/nanoid.sql
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
-  accounts        Account[]
-  
-  userProfile     UserProfile?
-  posts           Post[]
-  comments        Comment[]
-  likes           Like[]
-  commentLikes    CommentLike[]
-  followers       Follows[] @relation("following")
-  following       Follows[] @relation("follower")
+  accounts Account[]
+
+  userProfile  UserProfile?
+  posts        Post[]
+  comments     Comment[]
+  likes        Like[]
+  commentLikes CommentLike[]
+  followers    Follows[]     @relation("following")
+  following    Follows[]     @relation("follower")
+
+  @@schema("ripple")
 }
 
 model Follows {
   followerId  String
   followingId String
 
-  follower    User @relation("follower", fields: [followerId], references: [id])
-  following   User @relation("following", fields: [followingId], references: [id])
+  follower  User @relation("follower", fields: [followerId], references: [id])
+  following User @relation("following", fields: [followingId], references: [id])
 
   @@id([followerId, followingId])
+  @@schema("ripple")
 }
 
 model Account {
-  id                String    @id @default(cuid())
+  id                String  @id @default(cuid())
   userId            String
   type              String
   provider          String
@@ -65,60 +68,71 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@schema("ripple")
 }
 
 model UserProfile {
-  id                String   @id @default(cuid())
-  bio               String?
-  gender            String?
-  birthDate         DateTime?
-  privateProfile    Boolean?
-  emailMarketing    Boolean?
+  id             String    @id @default(cuid())
+  bio            String?
+  gender         String?
+  birthDate      DateTime?
+  privateProfile Boolean?
+  emailMarketing Boolean?
 
-  userId            String @unique
-  user              User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@schema("ripple")
 }
 
 model Post {
-  id                String    @id @default(cuid())
-  body              String
-  likes             Like[]
-  shares            Int       @default(0)
-  comments          Comment[]
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  id        String    @id @default(cuid())
+  body      String
+  likes     Like[]
+  shares    Int       @default(0)
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
-  userId            String
-  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@schema("ripple")
 }
 
 model Like {
-  id                String    @id @default(cuid())
-  userId            String
-  postId            String
-  
-  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  post              Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  id     String @id @default(cuid())
+  userId String
+  postId String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@schema("ripple")
 }
 
 model Comment {
-  id                String    @id @default(cuid())
-  body              String
-  likes             CommentLike[]
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  id        String        @id @default(cuid())
+  body      String
+  likes     CommentLike[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
 
-  userId            String
-  postId            String
-  post              Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@schema("ripple")
 }
 
 model CommentLike {
-  id                String    @id @default(uuid())
-  userId            String
-  commentId         String
-  
-  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  comment           Comment   @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  id        String @id @default(uuid())
+  userId    String
+  commentId String
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@schema("ripple")
 }
